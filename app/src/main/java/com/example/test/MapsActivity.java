@@ -55,19 +55,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng enschede = new LatLng(52.1344, 6.5333);
-        mMap.addMarker(new MarkerOptions().position(enschede).title("Marker in Enschede"));
-
-        LatLng test = new LatLng(53, 8);
-        mMap.addMarker(new MarkerOptions().position(test).title("Marker in Test"));
-
-        LatLng test2 = new LatLng(49, 9);
-        mMap.addMarker(new MarkerOptions().position(test2).title("Marker in Test2"));
+        LatLng saltMine = new LatLng(52.243140, 6.799713);
+        mMap.addMarker(new MarkerOptions().position(saltMine).title("Salt Mine"));
 
 
 
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(enschede, 15));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(saltMine, 15));
         mMap.setOnMarkerClickListener(this);
 
         try {
