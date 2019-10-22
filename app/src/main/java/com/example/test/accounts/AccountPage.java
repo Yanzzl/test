@@ -226,9 +226,9 @@ public class AccountPage extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(AccountPage.this, MainActivity.class);
-        startActivity(intent);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Intent intent = new Intent(AccountPage.this, MainActivity.class);
+//        startActivity(intent);
+//    }
 }

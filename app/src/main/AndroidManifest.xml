@@ -29,9 +29,9 @@
             android:theme="@style/bar"
             android:label="Account"
             android:parentActivityName=".accounts.AccountPage">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".accounts.AccountPage"/>
+<!--            <meta-data-->
+<!--                android:name="android.support.PARENT_ACTIVITY"-->
+<!--                android:value=".accounts.AccountPage"/>-->
         </activity>
 
         <activity
