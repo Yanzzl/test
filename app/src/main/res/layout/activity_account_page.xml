@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".accounts.AccountPage"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:background="@color/background_color">
+
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:padding="3dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/picture"
+            android:background="@drawable/circular_shape"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="#3F51B5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/name_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="13123682173@gmail.com"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:layout_marginTop="2dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#AAAAAA" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="#3F51B5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/email_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="13123682173@gmail.com"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:layout_marginTop="2dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#AAAAAA"
+                    />
+            </LinearLayout>
+
+<!--            TODO-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TODO"
+                    android:textColor="#3F51B5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="TODO"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:layout_marginTop="2dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#AAAAAA" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TODO"
+                    android:textColor="#3F51B5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="TODO"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:layout_marginTop="2dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#AAAAAA" />
+            </LinearLayout>
+<!--            TODO-->
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/logout_a"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/white_greyish"
+        android:background="@drawable/logoutbutton_selector"
+        android:layout_gravity="center_horizontal|bottom"
+        />
+
+</LinearLayout>
