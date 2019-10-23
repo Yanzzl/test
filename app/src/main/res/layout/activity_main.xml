@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3987FF"
+    android:background="#997F22"
     tools:context=".MainActivity">
 
     <ImageView
@@ -63,6 +63,15 @@
                         android:layout_height="65dp"
                         android:foregroundGravity="center"
                         android:src="@drawable/map2"></ImageView>
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Map"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -88,6 +97,14 @@
                         android:layout_width="131dp"
                         android:layout_height="65dp"
                         android:src="@drawable/account"></ImageView>
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Account"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -125,6 +142,14 @@
                         android:layout_height="65dp"
                         android:foregroundGravity="center"
                         android:src="@drawable/ar3"></ImageView>
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="AR"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -150,6 +175,14 @@
                         android:layout_width="131dp"
                         android:layout_height="75dp"
                         android:src="@drawable/game"></ImageView>
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Game"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 

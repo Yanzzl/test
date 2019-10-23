@@ -56,7 +56,7 @@
     file: 'sampledata/lion.fbx',
     name: 'lion',
     recenter: 'root',
-    scale: 6.245857,
+    scale: 50,
   },
   samplers: [
     {
