@@ -11,12 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".artest" />
-
         <activity
             android:name=".accounts.Register"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".accounts.Login" />
         <activity
             android:name=".accounts.Login"
             android:parentActivityName=".MainActivity" />
@@ -25,25 +23,29 @@
             android:label="Account"
             android:parentActivityName=".MainActivity"
             android:theme="@style/bar" />
-        <activity android:name=".accounts.ChangeData"
-            android:theme="@style/bar"
-            android:label="Account"
-            android:parentActivityName=".accounts.AccountPage">
-<!--            <meta-data-->
-<!--                android:name="android.support.PARENT_ACTIVITY"-->
-<!--                android:value=".accounts.AccountPage"/>-->
-        </activity>
+        <activity
+            android:name=".accounts.ChangeData"
+            android:label="Manage User Data"
+            android:parentActivityName=".accounts.AccountPage"
+            android:theme="@style/bar">
 
+            <!-- <meta-data -->
+            <!-- android:name="android.support.PARENT_ACTIVITY" -->
+            <!-- android:value=".accounts.AccountPage"/> -->
+        </activity>
+        <activity android:name=".accounts.Liked"
+            android:label="Liked Spots"
+            android:parentActivityName=".accounts.AccountPage"
+            android:theme="@style/bar"
+            ></activity>
         <activity
             android:name=".PopUpWindow"
             android:theme="@style/AppTheme.CustomTheme" />
-
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:parentActivityName=".MainActivity"
             android:theme="@style/bar" />
-
         <activity
             android:name=".game"
             android:label="game"
@@ -96,13 +98,13 @@
             </intent-filter>
         </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".MainActivity" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -110,14 +112,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
     </application>
+
     <uses-feature
         android:name="android.hardware.camera.ar"
         android:required="true" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

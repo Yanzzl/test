@@ -51,6 +51,7 @@ public class AccountPage extends AppCompatActivity {
         final Button logout = findViewById(R.id.logout_a);
         final TextView name = findViewById(R.id.name_a);
         final TextView email = findViewById(R.id.email_a);
+        final TextView liked = findViewById(R.id.liked_spots);
         picture = findViewById(R.id.profile_picture);
 
         name.setText(userData.getName(userData.getCurrentUser()));
@@ -69,6 +70,14 @@ public class AccountPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showPictureDialog();
+            }
+        });
+
+        liked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountPage.this, Liked.class);
+                startActivity(intent);
             }
         });
     }

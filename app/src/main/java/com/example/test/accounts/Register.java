@@ -47,6 +47,7 @@ public class Register extends AppCompatActivity {
                         } else {
                         userData.putName(email, nick);
                         userData.putPassword(email, password);
+                        userData.unStar(email);
                         userData.login(email);
                         Intent intent = new Intent(Register.this, AccountPage.class);
                         startActivity(intent);

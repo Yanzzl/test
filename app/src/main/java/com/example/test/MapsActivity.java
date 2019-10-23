@@ -30,6 +30,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final String TAG = "style problem";
     private static final int REQUEST_LOCATION_PERMISSION = 1;
     private GoogleMap mMap;
+    private boolean pop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        pop = getIntent().getBooleanExtra("POP_UP_BOORTOREN", false);
     }
 
 
@@ -55,19 +57,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng enschede = new LatLng(52.1344, 6.5333);
-        mMap.addMarker(new MarkerOptions().position(enschede).title("Marker in Enschede"));
+        LatLng saltMine = new LatLng(52.243069, 6.799563);
+        mMap.addMarker(new MarkerOptions().position(saltMine).title("Salt Mine"));
 
-        LatLng test = new LatLng(53, 8);
-        mMap.addMarker(new MarkerOptions().position(test).title("Marker in Test"));
-
-        LatLng test2 = new LatLng(49, 9);
-        mMap.addMarker(new MarkerOptions().position(test2).title("Marker in Test2"));
-
-
-
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(enschede, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(saltMine, 15));
         mMap.setOnMarkerClickListener(this);
 
         try {
@@ -85,6 +78,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         enableMyLocation();
+
+        if (pop) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(saltMine, 15));
+            Intent intent = new Intent(MapsActivity.this, PopUpWindow.class);
+            startActivity(intent);
+        }
     }
 
     @Override
