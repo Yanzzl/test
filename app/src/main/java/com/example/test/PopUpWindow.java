@@ -2,14 +2,18 @@ package com.example.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.test.accounts.AccountPage;
+import com.example.test.accounts.Liked;
 import com.example.test.accounts.UserData;
 import com.soundcloud.android.crop.Crop;
 
@@ -55,5 +59,25 @@ public class PopUpWindow extends AppCompatActivity {
                 }
             }
         });
+
+        Button game = findViewById(R.id.info_games);
+        Button ar = findViewById(R.id.info_ar);
+
+        game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PopUpWindow.this, game.class);
+                startActivity(intent);
+            }
+        });
+
+        ar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PopUpWindow.this, ar.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

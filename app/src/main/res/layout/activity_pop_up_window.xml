@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="10dp"
                 android:paddingEnd="10dp"
                 android:layout_width="match_parent"
@@ -69,13 +69,85 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:adjustViewBounds="true"
-            android:text="@string/info" />
+            android:text="@string/info_drilling_tower" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:text="@string/info_replacement" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:adjustViewBounds="true"
+            android:text="Activities: " />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/info_games"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/info_page_selector"
+                android:padding="3dp"
+                android:text="Games"
+                android:textColor="@color/white_greyish"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/info_ar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/info_page_selector"
+                android:padding="3dp"
+                android:text="AR View"
+                android:textColor="@color/white_greyish"
+                android:textSize="17sp"
+                android:textStyle="bold"
+
+                />
+
+        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:text="@string/info_note"
+            android:textSize="13dp"
+            android:gravity="center"
+            />
+
+        <!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:text="@string/info_salt_production" />-->
     </LinearLayout>
 
 </LinearLayout>

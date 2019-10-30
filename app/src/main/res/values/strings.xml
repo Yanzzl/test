@@ -6,5 +6,15 @@
     <string name="satellite_map">satellite map</string>
     <string name="terrain_map">terrain map</string>
     <string name="change_data">Manege user data</string>
-    <string name="info">TODO</string>
+    <string name="info_drilling_tower">Boorteoren is a drilling tower which was used back in around 1919 to drill holes in the ground and receive salt.
+    </string>
+    <string name="info_replacement">
+        As time progressed, mobile drilling stations were created and this was replaced with smaller, cheaper and less striking salt houses above the caverns.
+    </string>
+    <string name="info_salt_production">
+        For the salt production, first, the drill, which is made up of a large pipe, drills until it gets to the salt layer in the ground, which is mostly around 400 to 500 meters deep. Then a smaller pipe will be placed inside the large pipe and water gets pumped into the salt layer through the large pipe. The salt in the ground dissolves and gets pumped back up through the smaller pipe. From then on the salt-water-mixture, also called “pekel”, is transported through pipes in the ground to the fabric where it will be processed to different kind of salt products.
+    </string>
+    <string name="info_note">
+        Note: AR view is only available on the spot.
+    </string>
 </resources>

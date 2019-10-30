@@ -10,5 +10,8 @@
     <color name="black">#000000</color>
     <color name="white_greyish">#EEEEEE</color>
     <color name="button_selectorcolor">#CECECE</color>
+    <color name="button_light_gray">#AAAAAA</color>
+    <color name="button_gray">#868686</color>
+
 
 </resources>
