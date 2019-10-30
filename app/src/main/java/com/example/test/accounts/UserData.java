@@ -12,6 +12,7 @@ public class UserData {
     private HashMap<String, String> name = new HashMap<>();
     private HashMap<String, String> password = new HashMap<>();
     private HashMap<String, Bitmap> picture = new HashMap<>();
+    private HashMap<String, Boolean> stared = new HashMap<>();
 
     private static final UserData data = new UserData();
 
@@ -23,6 +24,19 @@ public class UserData {
         name.put(admin, "admin");
         password.put(admin, "123456");
         picture.put(admin, null);
+        stared.put(admin, false);
+    }
+
+    public Boolean isStared(String email) {
+        return stared.get(email);
+    }
+
+    public void star(String email) {
+        stared.put(email, true);
+    }
+
+    public void unStar(String email) {
+        stared.put(email, false);
     }
 
     public void putName(String email, String name) {
