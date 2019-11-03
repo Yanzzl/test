@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
         }
-
         mBackPressed = System.currentTimeMillis();
     }
 
