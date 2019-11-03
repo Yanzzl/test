@@ -2,10 +2,24 @@ package com.example.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.test.accounts.AccountPage;
+import com.example.test.accounts.Liked;
+import com.example.test.accounts.UserData;
+import com.soundcloud.android.crop.Crop;
 
 public class PopUpWindow extends AppCompatActivity {
+
+    private UserData userData = UserData.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +32,52 @@ public class PopUpWindow extends AppCompatActivity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int) (width*.8), (int) (height*.75));
+
+        ImageView star = findViewById(R.id.star);
+        if (userData.isLogin()) {
+            String currentUser = userData.getCurrentUser();
+            if (userData.isStared(currentUser)) {
+                star.setImageResource(R.drawable.ic_star_yellow);
+            } else {
+                star.setImageResource(R.drawable.ic_star_gray);
+            }
+        }
+        star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userData.isLogin()) {
+                    String currentUser = userData.getCurrentUser();
+                    if (userData.isStared(currentUser)) {
+                        star.setImageResource(R.drawable.ic_star_gray);
+                        userData.unStar(currentUser);
+                    } else {
+                        star.setImageResource(R.drawable.ic_star_yellow);
+                        userData.star(currentUser);
+                    }
+                } else {
+                    Toast.makeText(PopUpWindow.this, "Please login first!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        Button game = findViewById(R.id.info_games);
+        Button ar = findViewById(R.id.info_ar);
+
+        game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PopUpWindow.this, game.class);
+                startActivity(intent);
+            }
+        });
+
+        ar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PopUpWindow.this, ar.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

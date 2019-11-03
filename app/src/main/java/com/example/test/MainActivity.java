@@ -1,8 +1,6 @@
 package com.example.test;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -58,30 +56,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
-//            super.onBackPressed();
-            finish();
-            System.exit(0);
-            return;
+            moveTaskToBack(true);
+//            android.os.Process.killProcess(android.os.Process.myPid());
+//            System.exit(1);
         } else {
             Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
         }
         mBackPressed = System.currentTimeMillis();
     }
-//
-//    private boolean doubleBackToExitPressedOnce = true;
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            if (doubleBackToExitPressedOnce) {
-//                this.doubleBackToExitPressedOnce = false;
-//                Toast.makeText(this,"Please click BACK again to exit.", Toast.LENGTH_SHORT).show();
-//            } else {
-//                finish();
-//            }
-//        }
-//    }
 
 }
