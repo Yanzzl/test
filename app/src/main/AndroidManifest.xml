@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Web"></activity>
         <activity android:name=".artest" />
         <activity
             android:name=".accounts.Register"
@@ -33,11 +34,11 @@
             <!-- android:name="android.support.PARENT_ACTIVITY" -->
             <!-- android:value=".accounts.AccountPage"/> -->
         </activity>
-        <activity android:name=".accounts.Liked"
+        <activity
+            android:name=".accounts.Liked"
             android:label="Liked Spots"
             android:parentActivityName=".accounts.AccountPage"
-            android:theme="@style/bar"
-            ></activity>
+            android:theme="@style/bar" />
         <activity
             android:name=".PopUpWindow"
             android:theme="@style/AppTheme.CustomTheme" />
@@ -116,10 +117,10 @@
     <uses-feature
         android:name="android.hardware.camera.ar"
         android:required="true" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

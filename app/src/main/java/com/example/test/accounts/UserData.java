@@ -13,6 +13,8 @@ public class UserData {
     private HashMap<String, String> password = new HashMap<>();
     private HashMap<String, Bitmap> picture = new HashMap<>();
     private HashMap<String, Boolean> stared = new HashMap<>();
+    private HashMap<Integer, Boolean> gameState = new HashMap<>();
+
 
     private static final UserData data = new UserData();
 
@@ -25,6 +27,15 @@ public class UserData {
         password.put(admin, "123456");
         picture.put(admin, null);
         stared.put(admin, false);
+        iniGameState();
+    }
+
+    public void iniGameState() {
+        gameState.put(1, true);
+        gameState.put(2, false);
+        gameState.put(3, false);
+        gameState.put(4, false);
+        gameState.put(5, false);
     }
 
     public Boolean isStared(String email) {
@@ -76,7 +87,6 @@ public class UserData {
         }
     }
 
-
     public boolean isLogin() {
         return login;
     }
@@ -97,5 +107,14 @@ public class UserData {
     public String getCurrentUser() {
         return currentUser;
     }
+
+    public void unlockGame(int game) {
+        this.gameState.put(game, true);
+    }
+
+    public boolean getGameState(int game) {
+        return gameState.get(game);
+    }
+
 
 }
