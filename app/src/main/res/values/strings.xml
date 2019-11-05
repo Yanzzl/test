@@ -17,4 +17,11 @@
     <string name="info_note">
         Note: AR view is only available on the spot.
     </string>
+    <string name="guest_continue">
+        <u>Continue as Guest ></u>
+    </string>
+
+    <string name="register_here">
+        <u>Not a member yet? Sign up here.</u>
+    </string>
 </resources>

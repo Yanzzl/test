@@ -1,9 +1,11 @@
 package com.example.test;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -22,12 +24,20 @@ public class game extends AppCompatActivity {
     ImageView g3;
     ImageView g4;
     ImageView g5;
+    ConstraintLayout layout;
+    AnimationDrawable animationDrawable;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        layout = findViewById(R.id.game_layout);
+        animationDrawable = (AnimationDrawable) layout.getBackground();
+        animationDrawable.setEnterFadeDuration(4500);
+        animationDrawable.setExitFadeDuration(4500);
+        animationDrawable.start();
 
 
         g1 = findViewById(R.id.g1);
