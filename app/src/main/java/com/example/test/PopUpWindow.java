@@ -3,6 +3,8 @@ package com.example.test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -74,10 +76,28 @@ public class PopUpWindow extends AppCompatActivity {
         ar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PopUpWindow.this, ar.class);
-                startActivity(intent);
+                String packname = "com.PlayNow.Playground";
+                PackageManager packageManager = getPackageManager();
+                if (checkPackInfo(packname)) {
+                    Intent intent = packageManager.getLaunchIntentForPackage(packname);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(PopUpWindow.this, "You haven't install GeoPark AR",Toast.LENGTH_LONG ).show();
+                }
+            }
+
+            private boolean checkPackInfo(String packname) {
+                PackageInfo packageInfo = null;
+                try {
+                    packageInfo = getPackageManager().getPackageInfo(packname, 0);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                return packageInfo != null;
             }
         });
+
+
 
     }
 }
