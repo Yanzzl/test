@@ -1,7 +1,5 @@
 package com.example.test;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
@@ -9,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.test.accounts.AccountPage;
 import com.example.test.accounts.Login;
@@ -59,16 +59,16 @@ public class MainActivity extends AppCompatActivity {
         return packageInfo != null;
     }
     public void launchAr(View view) {
-//        Intent intent = new Intent(this, artest.class);
-//        startActivity(intent);
-        String packname = "com.PlayNow.Playground";
-        PackageManager packageManager = getPackageManager();
-        if (checkPackInfo(packname)) {
-            Intent intent = packageManager.getLaunchIntentForPackage(packname);
-            startActivity(intent);
-        } else {
-            Toast.makeText(MainActivity.this, "You haven't install GeoPark AR",Toast.LENGTH_LONG ).show();
-        }
+        Intent intent = new Intent(this, ar12_9.class);
+        startActivity(intent);
+//        String packname = "com.PlayNow.Playground";
+//        PackageManager packageManager = getPackageManager();
+//        if (checkPackInfo(packname)) {
+//            Intent intent = packageManager.getLaunchIntentForPackage(packname);
+//            startActivity(intent);
+//        } else {
+//            Toast.makeText(MainActivity.this, "You haven't install GeoPark AR",Toast.LENGTH_LONG ).show();
+//        }
 
 
     }
