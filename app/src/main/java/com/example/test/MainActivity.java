@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchAccount(View view) {
+        Intent intent = new Intent(this, SpotlistActivity.class);
+        startActivity(intent);
 //        if (userData.isLogin()) {
 //            Intent intent = new Intent(this, AccountPage.class);
 //            startActivity(intent);
@@ -42,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
 //            Intent intent = new Intent(this, Login.class);
 //            startActivity(intent);
 //        }
-
-        Intent intent = new Intent(this, SpotlistActivity.class);
-        startActivity(intent);
     }
     /**
      * 检查包是否存在
