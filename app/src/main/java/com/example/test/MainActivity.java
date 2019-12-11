@@ -35,13 +35,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchAccount(View view) {
-        if (userData.isLogin()) {
-            Intent intent = new Intent(this, AccountPage.class);
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
-        }
+//        if (userData.isLogin()) {
+//            Intent intent = new Intent(this, AccountPage.class);
+//            startActivity(intent);
+//        } else {
+//            Intent intent = new Intent(this, Login.class);
+//            startActivity(intent);
+//        }
+
+        Intent intent = new Intent(this, SpotlistActivity.class);
+        startActivity(intent);
     }
     /**
      * 检查包是否存在
@@ -69,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(MainActivity.this, "You haven't install GeoPark AR",Toast.LENGTH_LONG ).show();
         }
-
-
     }
 
     public void launchGame(View view) {
