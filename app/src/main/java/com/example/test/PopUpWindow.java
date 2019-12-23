@@ -1,10 +1,14 @@
 package com.example.test;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -19,26 +23,50 @@ import com.example.test.accounts.Liked;
 import com.example.test.accounts.UserData;
 import com.soundcloud.android.crop.Crop;
 
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+
 public class PopUpWindow extends AppCompatActivity {
 
-    private UserData userData = UserData.getInstance();
+    //    private UserData userData = UserData.getInstance();
+    SqliteHelper dbHelper;
+    String title;
+    TextView titleView;
+    TextView descriptionView;
+    ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_window);
+        dbHelper = new SqliteHelper(this);
+        title = getIntent().getStringExtra("TITLE");
+
+        titleView = findViewById(R.id.title_p);
+        descriptionView = findViewById(R.id.description_p);
+        viewPager = (ViewPager) findViewById(R.id.viewPager_p);
+
+
+        titleView.setText(title);
+        fillContent();
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
+
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width*.8), (int) (height*.75));
+        getWindow().setLayout((int) (width * .8), (int) (height * .75));
+
 
         ImageView star = findViewById(R.id.star);
-        if (userData.isLogin()) {
-            String currentUser = userData.getCurrentUser();
-            if (userData.isStared(currentUser)) {
+        if (dbHelper.isLogin()) {
+            String currentUser = dbHelper.getCurrent();
+            //TODO ""
+            if (dbHelper.isFavoriteSpots(currentUser, title)) {
                 star.setImageResource(R.drawable.ic_star_yellow);
             } else {
                 star.setImageResource(R.drawable.ic_star_gray);
@@ -47,14 +75,15 @@ public class PopUpWindow extends AppCompatActivity {
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userData.isLogin()) {
-                    String currentUser = userData.getCurrentUser();
-                    if (userData.isStared(currentUser)) {
+                if (dbHelper.isLogin()) {
+                    String currentUser = dbHelper.getCurrent();
+                    //TODO ""
+                    if (dbHelper.isFavoriteSpots(currentUser, title)) {
+                        dbHelper.removeFavorite(currentUser, title);
                         star.setImageResource(R.drawable.ic_star_gray);
-                        userData.unStar(currentUser);
                     } else {
                         star.setImageResource(R.drawable.ic_star_yellow);
-                        userData.star(currentUser);
+                        dbHelper.setFavorite(currentUser, title);
                     }
                 } else {
                     Toast.makeText(PopUpWindow.this, "Please login first!", Toast.LENGTH_SHORT).show();
@@ -82,7 +111,7 @@ public class PopUpWindow extends AppCompatActivity {
                     Intent intent = packageManager.getLaunchIntentForPackage(packname);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(PopUpWindow.this, "You haven't install GeoPark AR",Toast.LENGTH_LONG ).show();
+                    Toast.makeText(PopUpWindow.this, "You haven't install GeoPark AR", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -96,8 +125,27 @@ public class PopUpWindow extends AppCompatActivity {
                 return packageInfo != null;
             }
         });
-
-
-
     }
+
+
+    public void fillContent(){
+        Cursor data = dbHelper.getSpot(title);
+        ArrayList<Uri> pics = dbHelper.getPictures(title);
+        if (data.getCount() == 0) {
+            Toast.makeText(PopUpWindow.this, "Load failed", Toast.LENGTH_SHORT).show();
+        } else {
+            while (data.moveToNext()) {
+                descriptionView.setText(data.getString(4));
+            }
+        }
+        if (pics.size() < 1) {
+            Toast.makeText(PopUpWindow.this, "No picture", Toast.LENGTH_SHORT).show();
+        } else {
+//            imageView.setImageURI(pics.get(0));
+            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(pics, this);
+            viewPager.setAdapter(viewPagerAdapter);
+        }
+    }
+
+
 }

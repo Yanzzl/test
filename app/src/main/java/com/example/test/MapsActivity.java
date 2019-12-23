@@ -29,22 +29,35 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private static final String TAG = "style problem";
     private static final int REQUEST_LOCATION_PERMISSION = 1;
     private GoogleMap mMap;
     private boolean pop;
+    SqliteHelper dbHelper;
+    HashMap<String, LatLng> markers;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        markers = new HashMap<>();
+        dbHelper = new SqliteHelper(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        pop = getIntent().getBooleanExtra("POP_UP_BOORTOREN", false);
+        pop = getIntent().getBooleanExtra("POP_UP", false);
     }
 
 
@@ -61,8 +74,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        addMarkers();
+        for (Map.Entry<String, LatLng> entry : markers.entrySet()) {
+            mMap.addMarker(new MarkerOptions().position(entry.getValue()).title(entry.getKey()));
+        }
+        //TODO zoom location
         LatLng saltMine = new LatLng(52.243069, 6.799563);
-        mMap.addMarker(new MarkerOptions().position(saltMine).title("Salt Mine"));
+//        mMap.addMarker(new MarkerOptions().position(saltMine).title("Salt Mine"));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(saltMine, 15));
         mMap.setOnMarkerClickListener(this);
@@ -84,8 +102,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         enableMyLocation();
 
         if (pop) {
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(saltMine, 15));
+            String title = getIntent().getStringExtra("TITLE");
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markers.get(title), 15));
             Intent intent = new Intent(MapsActivity.this, PopUpWindow.class);
+            intent.putExtra("TITLE", title);
             startActivity(intent);
         }
     }
@@ -94,6 +114,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onMarkerClick(Marker marker) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15));
         Intent intent = new Intent(MapsActivity.this, PopUpWindow.class);
+        intent.putExtra("TITLE", marker.getTitle());
         startActivity(intent);
         return false;
     }
@@ -152,6 +173,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     enableMyLocation();
                     break;
                 }
+        }
+    }
+
+    public void addMarkers() {
+        Cursor data = dbHelper.getGeoPoints();
+        while (data.moveToNext()) {
+            String title = data.getString(1);
+            double lat = data.getDouble(2);
+            double lng = data.getDouble(3);
+            LatLng latLng = new LatLng(lat, lng);
+            markers.put(title, latLng);
         }
     }
 }

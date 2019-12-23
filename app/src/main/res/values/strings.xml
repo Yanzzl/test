@@ -5,8 +5,8 @@
     <string name="hybrid_map">hybrid map</string>
     <string name="satellite_map">satellite map</string>
     <string name="terrain_map">terrain map</string>
-    <string name="change_data">Manage user data</string>
-    <string name="info_drilling_tower">Boorteoren is a drilling tower which was used back in around 1919 to drill holes in the ground and receive salt.
+    <string name="change_data">Manege user data</string>
+    <string name="info_drilling_tower">Boortoren is a drilling tower which was used back in around 1919 to drill holes in the ground and receive salt.
     </string>
     <string name="info_replacement">
         As time progressed, mobile drilling stations were created and this was replaced with smaller, cheaper and less striking salt houses above the caverns.

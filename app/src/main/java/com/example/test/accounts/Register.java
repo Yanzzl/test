@@ -1,21 +1,28 @@
 package com.example.test.accounts;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.test.MainActivity;
 import com.example.test.R;
+import com.example.test.SpotlistActivity;
+import com.example.test.SqliteHelper;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Register extends AppCompatActivity {
-
-    private UserData userData = UserData.getInstance();
+    SqliteHelper dbHelper;
+    boolean admin;
 
 
     @Override
@@ -23,6 +30,9 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        admin = getIntent().getBooleanExtra("ADMIN", false);
+
+        dbHelper = new SqliteHelper(this);
 
         final Button register = findViewById(R.id.register_r);
         final TextView guest = findViewById(R.id.guest_r);
@@ -42,15 +52,24 @@ public class Register extends AppCompatActivity {
                 if (email.length() < 1 || password.length() < 1 || nick.length() < 1) {
                     Toast.makeText(getApplicationContext(), "Please fill in all the information", Toast.LENGTH_SHORT).show();
                 } else {
-                        if (userData.isUser(email)) {
-                            Toast.makeText(getApplicationContext(), "Email already used", Toast.LENGTH_SHORT).show();
+                    if (dbHelper.isUser(email)) {
+                        Toast.makeText(getApplicationContext(), "Email already used", Toast.LENGTH_SHORT).show();
+                    } else {
+                        boolean succeed;
+                        if (admin) {
+                            succeed = dbHelper.addAccount(email, nick, password, 1);
                         } else {
-                        userData.putName(email, nick);
-                        userData.putPassword(email, password);
-                        userData.unStar(email);
-                        userData.login(email);
-                        Intent intent = new Intent(Register.this, AccountPage.class);
-                        startActivity(intent);
+                            succeed = dbHelper.addAccount(email, nick, password, 0);
+                        }
+                        if (succeed) {
+                            dbHelper.logout();
+                            dbHelper.login(email);
+                            Toast.makeText(getApplicationContext(), "Register succeeded!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Register.this, AccountPage.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Register failed", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -59,10 +78,13 @@ public class Register extends AppCompatActivity {
         guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userData.logout();
                 Intent intent = new Intent(Register.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
+
+
+
+
 }

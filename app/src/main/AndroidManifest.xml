@@ -3,15 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.test">
 
-    <uses-feature
-        android:name="android.hardware.camera.ar"
-        android:required="true" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".EditStoryActivity"></activity>
+        <activity android:name=".SpotInfo"></activity>
+        <activity
+            android:name=".Upload"
+            android:label="Upload"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/bar" />
+        <activity android:name=".EditStoryActivity" />
         <activity android:name=".SpotlistActivity" />
         <activity android:name=".Web" />
         <activity android:name=".artest" />
@@ -47,7 +44,7 @@
         </activity>
         <activity
             android:name=".accounts.Liked"
-            android:label="Liked Spots"
+            android:label="Favorite Spots"
             android:parentActivityName=".accounts.AccountPage"
             android:theme="@style/bar" />
         <activity
@@ -124,5 +121,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
     </application>
+
+    <uses-feature
+        android:name="android.hardware.camera.ar"
+        android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

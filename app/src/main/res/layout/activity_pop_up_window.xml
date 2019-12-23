@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,38 +8,54 @@
     tools:context=".PopUpWindow"
     >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
     <!--    ImagePart-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
+        android:layout_height="250dp"
+        android:background="@color/black_greyish"
         >
-
-        <ImageView
+<!--        TODO-->
+<!--        <android.support.v4.view.ViewPager-->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager_p"
             android:layout_width="match_parent"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:adjustViewBounds="true"
-            android:src="@drawable/zoutwinning" />
+            />
+<!--        <ImageView-->
+<!--            android:id="@+id/image_p"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:src="@drawable/zoutwinning" />-->
     </RelativeLayout>
 
     <!--    TextPart-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
+        android:layout_height="wrap_content"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/title_p"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="10dp"
-                android:paddingEnd="10dp"
+                android:layout_marginEnd="50dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:text="Boortoren"
@@ -48,42 +64,34 @@
                 android:id="@+id/star"
                 android:layout_marginLeft="-60dp"
                 style="?android:buttonBarButtonStyle"
-                android:paddingBottom="5dp"
                 android:src="@drawable/ic_star_gray"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/star"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:paddingEnd="10dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="20dp"-->
-<!--            android:text="Boortoren"-->
-<!--            android:drawableRight="@drawable/ic_star_gray"-->
-<!--            />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/star"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginStart="10dp"-->
+        <!--            android:paddingEnd="10dp"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:textSize="20dp"-->
+        <!--            android:text="Boortoren"-->
+        <!--            android:drawableRight="@drawable/ic_star_gray"-->
+        <!--            />-->
 
         <TextView
+            android:id="@+id/description_p"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:adjustViewBounds="true"
             android:text="@string/info_drilling_tower" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:adjustViewBounds="true"
-            android:text="@string/info_replacement" />
 
         <TextView
             android:layout_width="match_parent"
@@ -141,13 +149,14 @@
             />
 
         <!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:adjustViewBounds="true"-->
-<!--            android:text="@string/info_salt_production" />-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="10dp"-->
+        <!--            android:layout_marginEnd="10dp"-->
+        <!--            android:layout_marginBottom="10dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:text="@string/info_salt_production" />-->
+    </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

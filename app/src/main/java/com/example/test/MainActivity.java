@@ -6,16 +6,25 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.test.accounts.AccountPage;
 import com.example.test.accounts.Login;
 import com.example.test.accounts.UserData;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
-    private UserData userData = UserData.getInstance();
+
+    SqliteHelper dbHelper;
 
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
@@ -27,24 +36,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        dbHelper = new SqliteHelper(this);
+
     }
 
     public void launchMap(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
+//        Intent intent = new Intent(this, EditStoryActivity.class);
+//        startActivity(intent);
+
     }
 
     public void launchAccount(View view) {
-        Intent intent = new Intent(this, SpotlistActivity.class);
-        startActivity(intent);
-//        if (userData.isLogin()) {
-//            Intent intent = new Intent(this, AccountPage.class);
-//            startActivity(intent);
-//        } else {
-//            Intent intent = new Intent(this, Login.class);
-//            startActivity(intent);
-//        }
+        if (dbHelper.isLogin()) {
+            Intent intent = new Intent(this, AccountPage.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+        }
     }
+
     /**
      * 检查包是否存在
      *
@@ -60,9 +74,12 @@ public class MainActivity extends AppCompatActivity {
         }
         return packageInfo != null;
     }
+
     public void launchAr(View view) {
 //        Intent intent = new Intent(this, artest.class);
 //        startActivity(intent);
+
+
         String packname = "com.PlayNow.Playground";
         PackageManager packageManager = getPackageManager();
         if (checkPackInfo(packname)) {
@@ -74,8 +91,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchGame(View view) {
-        Intent intent = new Intent(this, game.class);
+        Intent intent = new Intent(this, SpotlistActivity.class);
         startActivity(intent);
+
+//        Intent intent = new Intent(this, game.class);
+//        startActivity(intent);
     }
 
 
@@ -91,4 +111,8 @@ public class MainActivity extends AppCompatActivity {
         mBackPressed = System.currentTimeMillis();
     }
 
+
+
 }
+
+

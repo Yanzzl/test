@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -15,19 +16,24 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.test.MainActivity;
 import com.example.test.R;
+import com.example.test.SqliteHelper;
 import com.google.android.gms.maps.GoogleMap;
 import com.soundcloud.android.crop.Crop;
 
@@ -37,12 +43,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class AccountPage extends AppCompatActivity {
 
-    private UserData userData = UserData.getInstance();
     ImageView picture;
-
+    SqliteHelper dbHelper;
+    String currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +61,17 @@ public class AccountPage extends AppCompatActivity {
         final TextView email = findViewById(R.id.email_a);
         final TextView liked = findViewById(R.id.liked_spots);
         picture = findViewById(R.id.profile_picture);
-
-        name.setText(userData.getName(userData.getCurrentUser()));
-        email.setText(userData.getCurrentUser());
-        if (userData.getPicture(userData.getCurrentUser()) != null) {
-            picture.setImageBitmap(getRoundedCroppedBitmap(userData.getPicture(userData.getCurrentUser())));
+        dbHelper = new SqliteHelper(this);
+        currentUser = dbHelper.getCurrent();
+        name.setText(dbHelper.getUserName(currentUser));
+        email.setText(currentUser);
+        //TODO profile picture
+        if (dbHelper.hasIcon(currentUser)) {
+            picture.setImageBitmap(getRoundedCroppedBitmap(dbHelper.getIcon(currentUser)));
         }
+//        if (userData.getPicture(userData.getCurrentUser()) != null) {
+//            picture.setImageBitmap(getRoundedCroppedBitmap(userData.getPicture(userData.getCurrentUser())));
+//        }
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +102,7 @@ public class AccountPage extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                userData.logout();
+                dbHelper.logout();
                 Intent intent = new Intent(AccountPage.this, Login.class);
                 startActivity(intent);
             }
@@ -147,51 +160,32 @@ public class AccountPage extends AppCompatActivity {
     }
 
     private void beginCrop(Uri source) {
-        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+//        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        Date d = new Date();
+        CharSequence s  = DateFormat.format("MM-dd-yy hh-mm-ss", d.getTime());
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped_" + s.toString()));
         Crop.of(source, destination).asSquare().start(this);
     }
 
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
             Uri pi = Crop.getOutput(result);
-            Bitmap newPic = loadBitmap(pi.toString());
-            userData.putPicture(userData.getCurrentUser(), newPic);
-            picture.setImageBitmap(getRoundedCroppedBitmap(newPic));
+//            Bitmap newPic = loadBitmap(pi.toString());
+            //TODO store profile picture
+            boolean success = dbHelper.updateUserIcon(currentUser, pi.toString());
+            if (success) {
+                picture.setImageBitmap(getRoundedCroppedBitmap(dbHelper.getIcon(currentUser)));
+                Toast.makeText(this, "Update success", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Update failed", Toast.LENGTH_SHORT).show();
+            }
+//            userData.putPicture(userData.getCurrentUser(), newPic);
         } else if (resultCode == Crop.RESULT_ERROR) {
             Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    public Bitmap loadBitmap(String url) {
-        Bitmap bm = null;
-        InputStream is = null;
-        BufferedInputStream bis = null;
-        try {
-            URLConnection conn = new URL(url).openConnection();
-            conn.connect();
-            is = conn.getInputStream();
-            bis = new BufferedInputStream(is, 8192);
-            bm = BitmapFactory.decodeStream(bis);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (bis != null) {
-                try {
-                    bis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return bm;
-    }
+
 
 
     private Bitmap getRoundedCroppedBitmap(Bitmap bitmap) {
@@ -219,6 +213,10 @@ public class AccountPage extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.account_options, menu);
+        MenuItem item = menu.findItem(R.id.create_admin);
+        if (!dbHelper.isAdmin(currentUser)) {
+            item.setVisible(false);
+        }
         return true;
     }
 
@@ -229,6 +227,11 @@ public class AccountPage extends AppCompatActivity {
             case R.id.change_data:
                 Intent intent = new Intent(AccountPage.this, ChangeData.class);
                 startActivity(intent);
+                return true;
+            case R.id.create_admin:
+                Intent i = new Intent(AccountPage.this, Register.class);
+                i.putExtra("ADMIN", true);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -241,4 +244,8 @@ public class AccountPage extends AppCompatActivity {
         this.finishAffinity();
         startActivity(intent);
     }
+
+
+
+
 }
