@@ -53,10 +53,6 @@ dependencies {
 }
 
 
-sceneform.asset('sampledata/456.fbx',
-        'default',
-        'sampledata/456.sfa',
-        'src/main/assets/456')
 
 
 sceneform.asset('sampledata/test.fbx',
