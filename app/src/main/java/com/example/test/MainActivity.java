@@ -1,12 +1,14 @@
 package com.example.test;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.test.accounts.AccountPage;
 import com.example.test.accounts.Login;
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
-
+    private Object PackageManager;
 
 
     @Override
@@ -41,10 +43,34 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
+    /**
+     * 检查包是否存在
+     *
+     * @param packname
+     * @return
+     */
+    private boolean checkPackInfo(String packname) {
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = getPackageManager().getPackageInfo(packname, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return packageInfo != null;
+    }
     public void launchAr(View view) {
-        Intent intent = new Intent(this, artest.class);
+        Intent intent = new Intent(this, ar12_9.class);
         startActivity(intent);
+//        String packname = "com.PlayNow.Playground";
+//        PackageManager packageManager = getPackageManager();
+//        if (checkPackInfo(packname)) {
+//            Intent intent = packageManager.getLaunchIntentForPackage(packname);
+//            startActivity(intent);
+//        } else {
+//            Toast.makeText(MainActivity.this, "You haven't install GeoPark AR",Toast.LENGTH_LONG ).show();
+//        }
+
+
     }
 
     public void launchGame(View view) {

@@ -12,6 +12,7 @@
     <color name="button_selectorcolor">#CECECE</color>
     <color name="button_light_gray">#AAAAAA</color>
     <color name="button_gray">#868686</color>
+    <color name="hint">#CCEAE7</color>
 
 
 </resources>
