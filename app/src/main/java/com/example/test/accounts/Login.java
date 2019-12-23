@@ -3,6 +3,7 @@ package com.example.test.accounts;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.hardware.camera2.params.BlackLevelPattern;
 import android.os.Bundle;
 import android.view.View;
@@ -14,13 +15,15 @@ import android.widget.Toast;
 
 import com.example.test.MainActivity;
 import com.example.test.R;
+import com.example.test.SqliteHelper;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
     private static View view;
-
-    private UserData userData = UserData.getInstance();
+    SqliteHelper dbHelper;
 
 
     @Override
@@ -38,6 +41,8 @@ public class Login extends AppCompatActivity {
         final EditText pass;
         pass = findViewById(R.id.password_l);
 
+        dbHelper = new SqliteHelper(this);
+
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -45,8 +50,8 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String email = user.getText().toString();
                 String password = pass.getText().toString();
-                if (userData.isUser(email) && userData.getPassword(email).equals(password)) {
-                    userData.login(email);
+                if (dbHelper.isUser(email) && dbHelper.correctPassword(email, password)) {
+                    dbHelper.login(email);
                     Intent intent = new Intent(Login.this, AccountPage.class);
                     startActivity(intent);
                 } else {
@@ -66,7 +71,6 @@ public class Login extends AppCompatActivity {
         guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userData.logout();
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -106,4 +110,8 @@ public class Login extends AppCompatActivity {
         this.finishAffinity();
         startActivity(intent);
     }
+
+
+
+
 }

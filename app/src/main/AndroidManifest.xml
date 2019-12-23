@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:glEsVersion="0x00030000"
@@ -25,7 +26,16 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ar12_9"></activity>
-        <activity android:name=".Web" />
+        <activity android:name=".Web"></activity>
+
+        <activity android:name=".SpotInfo"></activity>
+        <activity
+            android:name=".Upload"
+            android:label="Upload"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/bar" />
+        <activity android:name=".EditStoryActivity" />
+        <activity android:name=".SpotlistActivity" />
         <activity android:name=".artest" />
         <activity
             android:name=".accounts.Register"
@@ -50,7 +60,7 @@
         </activity>
         <activity
             android:name=".accounts.Liked"
-            android:label="Liked Spots"
+            android:label="Favorite Spots"
             android:parentActivityName=".accounts.AccountPage"
             android:theme="@style/bar" />
         <activity

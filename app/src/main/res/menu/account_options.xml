@@ -4,4 +4,7 @@
     <item android:id="@+id/change_data"
         android:title="@string/change_data"
         app:showAsAction="never"/>
+    <item android:id="@+id/create_admin"
+        android:title="Create an administrator account"
+        app:showAsAction="never"/>
 </menu>

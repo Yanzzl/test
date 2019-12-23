@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +15,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.test.R;
+import com.example.test.SqliteHelper;
+
+import java.util.ArrayList;
 
 public class ChangeData extends AppCompatActivity {
 
-    private UserData userData = UserData.getInstance();
+
+    String currentUser;
+    SqliteHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_data);
 
+        dbHelper = new SqliteHelper(this);
+        currentUser = dbHelper.getCurrent();
+
         final TextView name = findViewById(R.id.change_name);
         final TextView email = findViewById(R.id.change_email);
+        email.setVisibility(View.INVISIBLE);
         final TextView password = findViewById(R.id.change_password);
 
         name.setOnClickListener(new View.OnClickListener() {
@@ -35,12 +45,12 @@ public class ChangeData extends AppCompatActivity {
             }
         });
 
-        email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeEmail();
-            }
-        });
+//        email.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                changeEmail();
+//            }
+//        });
 
         password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +92,7 @@ public class ChangeData extends AppCompatActivity {
                 if (newName.length()<1) {
                     Toast.makeText(getApplicationContext(), "Please fill in new name", Toast.LENGTH_SHORT).show();
                 } else {
-                    userData.putName(userData.getCurrentUser(), newName);
+                    dbHelper.updateUserName(currentUser, newName);
                     Intent intent = new Intent(ChangeData.this, AccountPage.class);
                     startActivity(intent);
                 }
@@ -117,7 +127,8 @@ public class ChangeData extends AppCompatActivity {
                 if (newEmail.length()<1) {
                     Toast.makeText(getApplicationContext(), "Please fill in new email", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (userData.changeEmail(userData.getCurrentUser(), newEmail)) {
+                    if (!dbHelper.isUser(newEmail)) {
+                        dbHelper.updateUserEmail(currentUser, newEmail);
                         Intent intent = new Intent(ChangeData.this, AccountPage.class);
                         startActivity(intent);
                     } else {
@@ -128,8 +139,8 @@ public class ChangeData extends AppCompatActivity {
             }
         });
     }
-
-
+//
+//
     public void enterOldPass() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -158,7 +169,7 @@ public class ChangeData extends AppCompatActivity {
                 // or return them to the component that opened the dialog
                 EditText edit =  ((AlertDialog) dialog).findViewById(R.id.name_c);
                 String oldPass = edit.getText().toString();
-                if (!oldPass.equals(userData.getPassword(userData.getCurrentUser()))) {
+                if (!dbHelper.correctPassword(currentUser, oldPass)) {
                     Toast.makeText(getApplicationContext(), "Please fill in correct password", Toast.LENGTH_SHORT).show();
                 } else {
                     enterNewPass();
@@ -166,8 +177,8 @@ public class ChangeData extends AppCompatActivity {
             }
         });
     }
-
-
+//
+//
     public void enterNewPass() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -199,14 +210,13 @@ public class ChangeData extends AppCompatActivity {
                 if (newPass.length()<1) {
                     Toast.makeText(getApplicationContext(), "Please fill in new password", Toast.LENGTH_SHORT).show();
                 } else {
-                    userData.putPassword(userData.getCurrentUser(), newPass);
+                    dbHelper.updateUserPass(currentUser, newPass);
                     Intent intent = new Intent(ChangeData.this, AccountPage.class);
                     startActivity(intent);
                 }
             }
         });
     }
-
 
 
 }
