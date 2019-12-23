@@ -4,23 +4,14 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.test.accounts.AccountPage;
 import com.example.test.accounts.Login;
-import com.example.test.accounts.UserData;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
