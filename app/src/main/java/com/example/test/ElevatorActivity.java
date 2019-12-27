@@ -16,6 +16,7 @@ public class ElevatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elevator);
 
+
         btnViewGame = (Button) findViewById(R.id.door_01);
 
         btnViewGame.setOnClickListener(new View.OnClickListener() {
