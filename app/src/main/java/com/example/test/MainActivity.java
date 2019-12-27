@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchAccount(View view) {
         Intent intent = new Intent(this, SpotlistActivity.class);
+//        Intent intent = new Intent(this, ElevatorActivity.class);
         startActivity(intent);
 //        if (userData.isLogin()) {
 //            Intent intent = new Intent(this, AccountPage.class);

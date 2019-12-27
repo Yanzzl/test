@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".EditStoryActivity"></activity>
+        <activity android:name=".ElevatorActivity"></activity>
+        <activity android:name=".EditStoryActivity" />
         <activity android:name=".SpotlistActivity" />
         <activity android:name=".Web" />
         <activity android:name=".artest" />

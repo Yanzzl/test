@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SqliteHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "DB_H.db";
+    public static final String TABLE1 = "spot";
     public static final String TABLE = "spot";
     public static final String COL1 = "ID";
     public static final String COL2 = "ITEM1";
@@ -18,8 +19,11 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ITEM1 TEXT)";
+        String createTable = "CREATE TABLE " + TABLE1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ITEM1 TEXT)";
         db.execSQL(createTable);
+
+        String createTable2 = "CREATE TABLE " + TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ITEM1 TEXT)";
+        db.execSQL(createTable2);
     }
 
     @Override
