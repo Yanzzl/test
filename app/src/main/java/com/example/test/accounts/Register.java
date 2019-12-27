@@ -35,7 +35,7 @@ public class Register extends AppCompatActivity {
         dbHelper = new SqliteHelper(this);
 
         final Button register = findViewById(R.id.register_r);
-        final TextView guest = findViewById(R.id.guest_r);
+//        final TextView guest = findViewById(R.id.guest_r);
         final EditText user;
         user = findViewById(R.id.username_r);
         final EditText pass;
@@ -75,13 +75,13 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        guest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Register.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+//        guest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Register.this, MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
 

@@ -140,7 +140,7 @@ public class Upload extends AppCompatActivity implements ImageListAdapter.ItemCl
                             for (String pic : selectedPhoto) {
                                 dbHelper.addGeoPicture(title_, pic);
                             }
-                            Toast.makeText(getApplicationContext(), "Upload succeeded! " + selectedPhoto, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Upload succeeded! ", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Upload.this, SpotlistActivity.class);
                             startActivity(intent);
                         }
