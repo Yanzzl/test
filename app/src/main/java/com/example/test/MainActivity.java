@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
     /**
      * 检查包是否存在
      *

@@ -34,6 +34,7 @@
             android:label="Upload"
             android:parentActivityName=".MainActivity"
             android:theme="@style/bar" />
+        <activity android:name=".ElevatorActivity"></activity>
         <activity android:name=".EditStoryActivity" />
         <activity android:name=".SpotlistActivity" />
         <activity android:name=".artest" />

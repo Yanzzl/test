@@ -30,6 +30,7 @@ import androidx.annotation.NonNull;
 
 public class SqliteHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "DB_H.db";
+    public static final String TABLE1 = "spot";
     public static final String TABLE = "spot";
     public static final String COL1 = "ID";
     public static final String COL2 = "ITEM1";
@@ -71,7 +72,6 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        String createTable1 = "CREATE TABLE " + TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ITEM1 TEXT)";
         String createTable1 = "CREATE TABLE " + SPOT + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, LATITUDE REAL, LONGITUDE REAL, DESCRIPTION TEXT)";
         String createTable2 = "CREATE TABLE " + ACCOUNT + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EMAIL TEXT, NAME TEXT, PASSWORD TEXT, ISADMIN INTEGER, ICON TEXT, HASICON INTEGER)";
         String createTable3 = "CREATE TABLE " + PICTURE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, VALUE TEXT)";
@@ -84,37 +84,20 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.execSQL(createTable4);
         db.execSQL(createTable5);
 
-//        try {
-//            db.execSQL(createTable1);
-//        } catch (Exception e) {
-//            System.out.println("create " + SPOT + "Failed");
-//        }
-//        try {
-//            db.execSQL(createTable2);
-//        } catch (Exception e) {
-//            System.out.println("create " + ACCOUNT + "Failed");
-//        }
-//        try {
-//            db.execSQL(createTable3);
-//        } catch (Exception e) {
-//            System.out.println("create " + PICTURE + "Failed");
-//        }
-//        try {
-//            db.execSQL(createTable4);
-//        } catch (Exception e) {
-//            System.out.println("create " + STAR + "Failed");
-//        }
-
         addDefaultUser(db);
         addDefaultSpots(db);
         addDefaultPics(db);
-
+//TODO
+//        String createTable = "CREATE TABLE " + TABLE1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ITEM1 TEXT)";
+//        db.execSQL(createTable);
+//
+//        String createTable2 = "CREATE TABLE " + TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ITEM1 TEXT)";
+//        db.execSQL(createTable2);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP IF TABLE EXISTS " + TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + SPOT);
         db.execSQL("DROP TABLE IF EXISTS " + ACCOUNT);
         db.execSQL("DROP TABLE IF EXISTS " + PICTURE);
@@ -122,38 +105,31 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + LOGIN);
 
         onCreate(db);
+//TODO
+//        db.execSQL("DROP IF TABLE EXISTS " + TABLE);
+
     }
 
-    public boolean addData(String item1) {
+    public boolean addData(String item1){
+
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(email, item1);
-        contentValues.put(name, "admin");
-        contentValues.put(password, "123456");
-        contentValues.put(isAdmin, 1);
+        contentValues.put(COL2,item1);
 
-        long result = db.insert(ACCOUNT, null, contentValues);
+        long result = db.insert(TABLE, null, contentValues);
 
-        if (result == -1) {
+        if (result == -1){
             return false;
         } else {
             return true;
         }
     }
 
-    public Cursor getListContents() {
+    public Cursor getListContents(){
         SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor data = db.rawQuery("SELECT NAME FROM " + ACCOUNT + " WHERE EMAIL = 'admin@gmail.com'", null);
-
-        Cursor data = db.rawQuery("SELECT VALUE FROM " + PICTURE + " WHERE TITLE = 'Boortoren'", null);
-
-//        Cursor data = getAccount("admin@gmail.com");
-
-//        Cursor data = db.rawQuery("SELECT * FROM " + LOGIN, null);
-//        Cursor data = db.query(SPOT, null, null, null, null,null,null, null);
-//        Cursor data = db.rawQuery("SELECT ICON FROM " + ACCOUNT + " WHERE EMAIL = 'admin@gmail.com'", null);
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE, null);
         return data;
-
     }
 
 
