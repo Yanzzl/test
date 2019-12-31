@@ -41,6 +41,7 @@ public class SpotlistActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                        Toast.makeText(SpotlistActivity.this, "Fuck", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
+                        intent.putExtra("Key", "Value");
                         startActivity(intent);
                     }
                 });
