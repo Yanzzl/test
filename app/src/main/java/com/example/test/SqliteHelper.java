@@ -35,7 +35,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String COL1 = "ID";
     public static final String COL2 = "ITEM1";
 
-    public static final String DB_TEST = "DB_TEST31.db";
+    public static final String DB_TEST = "DB_TEST34.db";
     public static final String SPOT = "geopoint";
     public static final String title = "TITLE";
     public static final String description = "DESCRIPTION";
@@ -52,6 +52,10 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String isAdmin = "ISADMIN";
     public static final String userIcon = "ICON";
     public static final String hasIcon = "HASICON";
+
+    public static final String NEWS = "news";
+    public static final String content = "CONTENT";
+    public static final String newsPic = "NEWSPIC";
 
 
     public static final String STAR = "star";
@@ -77,22 +81,19 @@ public class SqliteHelper extends SQLiteOpenHelper {
         String createTable3 = "CREATE TABLE " + PICTURE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, VALUE TEXT)";
         String createTable4 = "CREATE TABLE " + STAR + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EMAIL TEXT, TITLE TEXT)";
         String createTable5 = "CREATE TABLE " + LOGIN + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EMAIL TEXT)";
+        String createTable6 = "CREATE TABLE " + NEWS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, CONTENT TEXT, NEWSPIC TEXT)";
 
         db.execSQL(createTable1);
         db.execSQL(createTable2);
         db.execSQL(createTable3);
         db.execSQL(createTable4);
         db.execSQL(createTable5);
+        db.execSQL(createTable6);
 
         addDefaultUser(db);
         addDefaultSpots(db);
         addDefaultPics(db);
-//TODO
-//        String createTable = "CREATE TABLE " + TABLE1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ITEM1 TEXT)";
-//        db.execSQL(createTable);
-//
-//        String createTable2 = "CREATE TABLE " + TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ITEM1 TEXT)";
-//        db.execSQL(createTable2);
+        addDefaultNews(db);
 
     }
 
@@ -103,30 +104,29 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + PICTURE);
         db.execSQL("DROP TABLE IF EXISTS " + STAR);
         db.execSQL("DROP TABLE IF EXISTS " + LOGIN);
+        db.execSQL("DROP TABLE IF EXISTS " + NEWS);
 
         onCreate(db);
-//TODO
-//        db.execSQL("DROP IF TABLE EXISTS " + TABLE);
 
     }
 
-    public boolean addData(String item1){
+    public boolean addData(String item1) {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL2,item1);
+        contentValues.put(COL2, item1);
 
         long result = db.insert(TABLE, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
             return false;
         } else {
             return true;
         }
     }
 
-    public Cursor getListContents(){
+    public Cursor getListContents() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT * FROM " + TABLE, null);
         return data;
@@ -163,8 +163,16 @@ public class SqliteHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean isNews(String title_) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT * FROM " + NEWS + " WHERE TITLE = '" + title_ + "'", null);
+        if (data.getCount() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-    //TODO
     public boolean addGeoPicture(String title_, String picValue_) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -200,6 +208,24 @@ public class SqliteHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    public boolean addNews(String title_, String description_, String newsPic_) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(title, title_);
+        contentValues.put(content, description_);
+        contentValues.put(newsPic, newsPic_);
+
+        long result = db.insert(NEWS, null, contentValues);
+
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     public boolean addDefaultUser(SQLiteDatabase db) {
         ContentValues contentValues = new ContentValues();
@@ -244,6 +270,21 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Boortoren', '" + zoutwinning.toString() + "')");
         db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Boortoren', '" + salt_house.toString() + "')");
         return true;
+    }
+
+    public void addDefaultNews(SQLiteDatabase db) {
+        ContentValues contentValues = new ContentValues();
+        String descriptionBoortoren = "New GeoPoint Boortoren is added in the app! Check on the GeoPoint list for further information and fun activities.\n\n" +
+                "Boortoren is a drilling tower which was used back in around 1919 to drill holes in the ground and receive salt.\n\n" +
+                "As time progressed, mobile drilling stations were created and this was replaced with smaller, cheaper and less striking salt houses above the caverns.";
+        Uri zoutwinning = getUriToDrawable(context, R.drawable.zoutwinning);
+        contentValues.put(title, "What's new at Boortoren?");
+        contentValues.put(content, descriptionBoortoren);
+        contentValues.put(newsPic, zoutwinning.toString());
+//        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Boortoren', '" + zoutwinning.toString() + "')");
+
+        db.insert(NEWS, null, contentValues);
+
     }
 
 
@@ -363,7 +404,6 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.delete(STAR, "EMAIL = ? and TITLE = ?", new String[]{email_, title_});
     }
 
-    //TODO remove in SPOT, STAR, PICTURE
     public void removeGeoPoint(String title_) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(SPOT, "TITLE = '" + title_ + "'", null);
@@ -385,6 +425,23 @@ public class SqliteHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery("SELECT * FROM " + SPOT + " WHERE TITLE = '" + title_ + "'", null);
         return data;
     }
+
+    public Cursor getNews(String title_) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT * FROM " + NEWS + " WHERE TITLE = '" + title_ + "'", null);
+        return data;
+    }
+
+    public Cursor getNews() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT * FROM " + NEWS, null);
+        return data;
+    }
+
+    public void removeNews(String title_) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(NEWS, "TITLE = '" + title_ + "'", null);
+    }
 //
 //    public ArrayList<Bitmap> getPictures(String title_) {
 //        SQLiteDatabase db = this.getWritableDatabase();
@@ -400,6 +457,16 @@ public class SqliteHelper extends SQLiteOpenHelper {
 //        }
 //        return theList;
 //    }
+
+    public Uri getNewsPic(String title_) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT NEWSPIC FROM " + NEWS + " WHERE TITLE = '" + title_ + "'", null);
+        ArrayList<Uri> theList = new ArrayList<>();
+        while (data.moveToNext()) {
+            theList.add(Uri.parse(data.getString(0)));
+        }
+        return theList.get(0);
+    }
 
     public ArrayList<Uri> getPictures(String title_) {
         SQLiteDatabase db = this.getWritableDatabase();

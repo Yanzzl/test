@@ -78,9 +78,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchGame(View view) {
+//        Intent intent = new Intent(this, NewsActivity.class);
+//        startActivity(intent);
         Intent intent = new Intent(this, SpotlistActivity.class);
         startActivity(intent);
-
 //        Intent intent = new Intent(this, game.class);
 //        startActivity(intent);
     }

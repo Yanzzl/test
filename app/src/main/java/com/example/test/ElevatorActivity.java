@@ -10,12 +10,14 @@ import android.widget.Button;
 public class ElevatorActivity extends AppCompatActivity {
     Button btnViewGame;
     Button btnViewMap;
+    String spotTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elevator);
 
+        spotTitle = getIntent().getStringExtra("TITLE");
 
         btnViewGame = (Button) findViewById(R.id.door_01);
 
@@ -33,6 +35,8 @@ public class ElevatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ElevatorActivity.this, MapsActivity.class);
+                intent.putExtra("TITLE", spotTitle);
+                intent.putExtra("POP_UP", true);
                 startActivity(intent);
             }
         });

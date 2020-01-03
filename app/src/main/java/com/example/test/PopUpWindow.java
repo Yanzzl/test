@@ -65,7 +65,6 @@ public class PopUpWindow extends AppCompatActivity {
         ImageView star = findViewById(R.id.star);
         if (dbHelper.isLogin()) {
             String currentUser = dbHelper.getCurrent();
-            //TODO ""
             if (dbHelper.isFavoriteSpots(currentUser, title)) {
                 star.setImageResource(R.drawable.ic_star_yellow);
             } else {
@@ -77,7 +76,6 @@ public class PopUpWindow extends AppCompatActivity {
             public void onClick(View v) {
                 if (dbHelper.isLogin()) {
                     String currentUser = dbHelper.getCurrent();
-                    //TODO ""
                     if (dbHelper.isFavoriteSpots(currentUser, title)) {
                         dbHelper.removeFavorite(currentUser, title);
                         star.setImageResource(R.drawable.ic_star_gray);

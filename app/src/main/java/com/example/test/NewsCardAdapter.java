@@ -1,5 +1,4 @@
 package com.example.test;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,21 +13,27 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.test.MapsActivity;
+import com.example.test.R;
+import com.example.test.SpotInfo;
+import com.example.test.SpotlistActivity;
+import com.example.test.SqliteHelper;
 import com.example.test.accounts.AccountPage;
 import com.example.test.accounts.Login;
 
 import java.util.ArrayList;
-
-public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
-    private ArrayList<String> list = new ArrayList<String>();
+public class NewsCardAdapter extends BaseAdapter implements ListAdapter {
+    private ArrayList<String> list;
     private Context context;
+    private boolean isAdmin;
 
     SqliteHelper dbHelper;
 
 
-    public MyCustomAdapter(ArrayList<String> list, Context context) {
+    public NewsCardAdapter(ArrayList<String> list, Context context, boolean isAdmin) {
         this.list = list;
         this.context = context;
+        this.isAdmin = isAdmin;
         dbHelper = new SqliteHelper(context);
 
     }
@@ -55,21 +60,39 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item_admin, null);
+            view = inflater.inflate(R.layout.news_cardview, null);
         }
 
         //Handle TextView and display string from your list
-        TextView listItemText = (TextView)view.findViewById(R.id.item_admin);
+        TextView listItemText = (TextView)view.findViewById(R.id.title_news);
         listItemText.setText(list.get(position));
 
+        ImageView imageView = view.findViewById(R.id.picture_news);
+        imageView.setImageURI(dbHelper.getNewsPic(list.get(position)));
+
+
         //Handle buttons and add onClickListeners
-        ImageView edit = view.findViewById(R.id.item_edit_admin);
-        ImageView delete = view.findViewById(R.id.item_delete_admin);
+        ImageView edit = view.findViewById(R.id.edit_news);
+        ImageView delete = view.findViewById(R.id.delete_news);
+
+        listItemText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, NewsPage.class);
+                intent.putExtra("TITLE", list.get(position));
+                context.startActivity(intent);
+            }
+        });
+
+        if (!isAdmin) {
+            edit.setVisibility(View.GONE);
+            delete.setVisibility(View.GONE);
+        }
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SpotInfo.class);
+                Intent intent = new Intent(context, EditNews.class);
                 intent.putExtra("TITLE", list.get(position));
                 context.startActivity(intent);
             }
@@ -84,9 +107,8 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // delete
-                        dbHelper.removeGeoPics(list.get(position));
-                        dbHelper.removeGeoPoint(list.get(position));
-                        Intent intent = new Intent(context, SpotlistActivity.class);
+                        dbHelper.removeNews(list.get(position));
+                        Intent intent = new Intent(context, NewsActivity.class);
                         context.startActivity(intent);
                     }
                 });
@@ -100,19 +122,9 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             }
         });
 
-        listItemText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO elevator stuff
-                Intent intent = new Intent(context, ElevatorActivity.class);
-                intent.putExtra("TITLE",  list.get(position));
-                context.startActivity(intent);
-//                Intent intent = new Intent(context, MapsActivity.class);
-//                intent.putExtra("TITLE", list.get(position));
-//                intent.putExtra("POP_UP", true);
-//                context.startActivity(intent);
-            }
-        });
+
+
+
 
 
         return view;
