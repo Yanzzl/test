@@ -68,6 +68,11 @@ public class SpotlistActivity extends AppCompatActivity {
                     Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
                     intent.putExtra("TITLE", selectedItem);
                     startActivity(intent);
+
+                    //TODO added
+//                    Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
+//                    intent.putExtra("Key", "Value");
+//                    startActivity(intent);
                 }
             });
         }
