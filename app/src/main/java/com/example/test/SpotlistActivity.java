@@ -61,16 +61,17 @@ public class SpotlistActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
-                //TODO original working spotlist
+                // original working spotlist
 //                    Intent intent = new Intent(SpotlistActivity.this, MapsActivity.class);
 //                    intent.putExtra("TITLE", selectedItem);
 //                    intent.putExtra("POP_UP", true);
 //                    startActivity(intent);
                 Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
                 intent.putExtra("TITLE", selectedItem);
+                intent.putExtra("IS_LOGIN", false);
                 startActivity(intent);
 
-                //TODO added
+                // added
 //                    Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
 //                    intent.putExtra("Key", "Value");
 //                    startActivity(intent);
@@ -79,7 +80,6 @@ public class SpotlistActivity extends AppCompatActivity {
 //        }
 
     }
-
 
 
     @Override

@@ -10,10 +10,11 @@ import android.widget.Button;
 public class ElevatorActivity extends AppCompatActivity {
     Button btnViewGame;
     Button btnViewMap;
-    String spotTitle;
-
     Button btnViewGame2;
     Button btnViewMap2;
+
+    String spotTitle;
+    boolean isLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class ElevatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_elevator);
 
         spotTitle = getIntent().getStringExtra("TITLE");
+        isLogin = getIntent().getBooleanExtra("IS_LOGIN", false);
 
         //TODO added
 //        Intent intent = getIntent();
@@ -68,4 +70,18 @@ public class ElevatorActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        if (isLogin) {
+            Intent intent = new Intent(this, TestingActivity.class);
+            this.finishAffinity();
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, SpotlistActivity.class);
+            this.finishAffinity();
+            startActivity(intent);
+        }
+    }
+
 }

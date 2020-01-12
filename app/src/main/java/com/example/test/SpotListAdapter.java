@@ -104,7 +104,7 @@ public class SpotListAdapter extends BaseAdapter implements ListAdapter {
                         // delete
                         dbHelper.removeGeoPics(list.get(position));
                         dbHelper.removeGeoPoint(list.get(position));
-                        Intent intent = new Intent(context, SpotlistActivity.class);
+                        Intent intent = new Intent(context, TestingActivity.class);
                         context.startActivity(intent);
                     }
                 });
@@ -124,6 +124,7 @@ public class SpotListAdapter extends BaseAdapter implements ListAdapter {
                 //TODO elevator stuff
                 Intent intent = new Intent(context, ElevatorActivity.class);
                 intent.putExtra("TITLE",  list.get(position));
+                intent.putExtra("IS_LOGIN", true);
                 context.startActivity(intent);
 //                Intent intent = new Intent(context, MapsActivity.class);
 //                intent.putExtra("TITLE", list.get(position));
