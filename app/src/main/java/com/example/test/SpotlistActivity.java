@@ -54,28 +54,28 @@ public class SpotlistActivity extends AppCompatActivity {
 //            listView.setAdapter(adapter);
 //
 //        } else {
-            ListAdapter listAdapter = new ArrayAdapter<>(this, R.layout.list_item_normal, theList);
-            listView.setAdapter(listAdapter);
+        ListAdapter listAdapter = new ArrayAdapter<>(this, R.layout.list_item_normal, theList);
+        listView.setAdapter(listAdapter);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String selectedItem = (String) parent.getItemAtPosition(position);
-                    //TODO original working spotlist
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = (String) parent.getItemAtPosition(position);
+                //TODO original working spotlist
 //                    Intent intent = new Intent(SpotlistActivity.this, MapsActivity.class);
 //                    intent.putExtra("TITLE", selectedItem);
 //                    intent.putExtra("POP_UP", true);
 //                    startActivity(intent);
-                    Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
-                    intent.putExtra("TITLE", selectedItem);
-                    startActivity(intent);
+                Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
+                intent.putExtra("TITLE", selectedItem);
+                startActivity(intent);
 
-                    //TODO added
+                //TODO added
 //                    Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
 //                    intent.putExtra("Key", "Value");
 //                    startActivity(intent);
-                }
-            });
+            }
+        });
 //        }
 
     }

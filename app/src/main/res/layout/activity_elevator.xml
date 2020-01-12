@@ -45,33 +45,33 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="700dp"
             android:adjustViewBounds="true"
+            android:layout_marginTop="700dp"
             android:scaleType="fitStart"
-            android:src="@drawable/b" />
+            android:src="@drawable/a" />
 
         <Button
-            android:id="@+id/door_03"
-            android:layout_width="66dp"
-            android:layout_height="82dp"
+            android:id="@+id/door_021"
+            android:layout_width="77dp"
+            android:layout_height="92dp"
             android:layout_gravity="start"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="1003dp"
+            android:layout_marginTop="940dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/door03"
+            android:background="@drawable/door01"
             tools:visibility="visible" />
 
         <Button
-            android:id="@+id/door_04"
-            android:layout_width="37dp"
-            android:layout_height="80dp"
+            android:id="@+id/door_022"
+            android:layout_width="76dp"
+            android:layout_height="88dp"
             android:layout_gravity="start"
-            android:layout_marginStart="380dp"
-            android:layout_marginTop="1018dp"
+            android:layout_marginStart="269dp"
+            android:layout_marginTop="1006.5dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/door04"
+            android:background="@drawable/door02"
             tools:visibility="visible" />
     </RelativeLayout>
 </ScrollView>

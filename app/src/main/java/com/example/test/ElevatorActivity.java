@@ -25,7 +25,7 @@ public class ElevatorActivity extends AppCompatActivity {
         //TODO added
 //        Intent intent = getIntent();
 //        String p1 = intent.getStringExtra("Key");
-//
+
         btnViewGame = (Button) findViewById(R.id.door_01);
 
         btnViewGame.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +48,7 @@ public class ElevatorActivity extends AppCompatActivity {
             }
         });
 
-        btnViewGame2 = (Button) findViewById(R.id.door_03);
+        btnViewGame2 = (Button) findViewById(R.id.door_021);
 
         btnViewGame2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class ElevatorActivity extends AppCompatActivity {
             }
         });
 
-        btnViewMap2 = (Button) findViewById(R.id.door_04);
+        btnViewMap2 = (Button) findViewById(R.id.door_022);
 
         btnViewMap2.setOnClickListener(new View.OnClickListener() {
             @Override
