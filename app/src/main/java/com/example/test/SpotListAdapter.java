@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +20,31 @@ import com.example.test.accounts.Login;
 
 import java.util.ArrayList;
 
-public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
-    private ArrayList<String> list = new ArrayList<String>();
+public class SpotListAdapter extends BaseAdapter implements ListAdapter {
+    private ArrayList<String> list = new ArrayList<>();
     private Context context;
 
     SqliteHelper dbHelper;
+    boolean isAdmin = false;
 
+    public static final int FAVORITE_SPOTS = 50;
+    public static final int ALL_SPOTS = 150;
 
-    public MyCustomAdapter(ArrayList<String> list, Context context) {
-        this.list = list;
+    public SpotListAdapter(int code, Context context) {
         this.context = context;
         dbHelper = new SqliteHelper(context);
+        if (code == FAVORITE_SPOTS) {
+            Cursor data = dbHelper.getFavoriteSpots(dbHelper.getCurrent());
+            while(data.moveToNext()){
+                this.list.add(data.getString(2));
+            }
+        } else if (code == ALL_SPOTS) {
+            Cursor data = dbHelper.getGeoPoints();
+            while (data.moveToNext()) {
+                this.list.add(data.getString(1));
+            }
+        }
+        isAdmin = dbHelper.isAdmin(dbHelper.getCurrent());
     }
 
     @Override
@@ -65,6 +80,10 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         ImageView edit = view.findViewById(R.id.item_edit_admin);
         ImageView delete = view.findViewById(R.id.item_delete_admin);
 
+        if (isAdmin) {
+            edit.setVisibility(View.VISIBLE);
+            delete.setVisibility(View.VISIBLE);
+        }
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

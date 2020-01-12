@@ -35,7 +35,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String COL1 = "ID";
     public static final String COL2 = "ITEM1";
 
-    public static final String DB_TEST = "DB_TEST34.db";
+    public static final String DB_TEST = "DB_TEST38.db";
     public static final String SPOT = "geopoint";
     public static final String title = "TITLE";
     public static final String description = "DESCRIPTION";
@@ -278,7 +278,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 "Boortoren is a drilling tower which was used back in around 1919 to drill holes in the ground and receive salt.\n\n" +
                 "As time progressed, mobile drilling stations were created and this was replaced with smaller, cheaper and less striking salt houses above the caverns.";
         Uri zoutwinning = getUriToDrawable(context, R.drawable.zoutwinning);
-        contentValues.put(title, "What's new at Boortoren?");
+        contentValues.put(title, "What is new at Boortoren?");
         contentValues.put(content, descriptionBoortoren);
         contentValues.put(newsPic, zoutwinning.toString());
 //        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Boortoren', '" + zoutwinning.toString() + "')");

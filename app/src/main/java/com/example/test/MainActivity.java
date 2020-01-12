@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     /**
      * 检查包是否存在
      *
@@ -63,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchAr(View view) {
-        Intent intent = new Intent(this, ar12_9.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, ar12_9.class);
+//        startActivity(intent);
+
+
 //        String packname = "com.PlayNow.Playground";
 //        PackageManager packageManager = getPackageManager();
 //        if (checkPackInfo(packname)) {
@@ -74,16 +77,26 @@ public class MainActivity extends AppCompatActivity {
 //            Toast.makeText(MainActivity.this, "You haven't install GeoPark AR",Toast.LENGTH_LONG ).show();
 //        }
 
+        Intent intent = new Intent(this, NewsActivity.class);
+        startActivity(intent);
 
     }
 
     public void launchGame(View view) {
 //        Intent intent = new Intent(this, NewsActivity.class);
 //        startActivity(intent);
-        Intent intent = new Intent(this, SpotlistActivity.class);
-        startActivity(intent);
+
 //        Intent intent = new Intent(this, game.class);
 //        startActivity(intent);
+
+        if (dbHelper.isLogin()) {
+            Intent intent = new Intent(this, TestingActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, SpotlistActivity.class);
+            startActivity(intent);
+        }
+
     }
 
 

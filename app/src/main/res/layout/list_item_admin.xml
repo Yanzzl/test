@@ -11,6 +11,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"
+        android:visibility="gone"
         />
 
     <ImageView
@@ -21,6 +22,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="50dp"
+        android:visibility="gone"
         />
 
 <!--    <Button-->
