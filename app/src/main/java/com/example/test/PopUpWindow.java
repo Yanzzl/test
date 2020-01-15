@@ -103,14 +103,16 @@ public class PopUpWindow extends AppCompatActivity {
         ar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String packname = "com.PlayNow.Playground";
-                PackageManager packageManager = getPackageManager();
-                if (checkPackInfo(packname)) {
-                    Intent intent = packageManager.getLaunchIntentForPackage(packname);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(PopUpWindow.this, "You haven't install GeoPark AR", Toast.LENGTH_LONG).show();
-                }
+//                String packname = "com.PlayNow.Playground";
+//                PackageManager packageManager = getPackageManager();
+//                if (checkPackInfo(packname)) {
+//                    Intent intent = packageManager.getLaunchIntentForPackage(packname);
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(PopUpWindow.this, "You haven't install GeoPark AR", Toast.LENGTH_LONG).show();
+//                }
+                Intent intent = new Intent(PopUpWindow.this, ar12_9.class);
+                startActivity(intent);
             }
 
             private boolean checkPackInfo(String packname) {
