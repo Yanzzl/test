@@ -25,7 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".EditNews"></activity>
+        <activity android:name=".ElevatorB2"></activity>
+        <activity android:name=".ElevatorB1" />
+        <activity android:name=".EditNews" />
         <activity android:name=".NewsPage" />
         <activity android:name=".MakeNews" />
         <activity android:name=".NewsActivity" />
