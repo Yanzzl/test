@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchAr(View view) {
-        Intent intent = new Intent(this, ar12_9.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, ar12_9.class);
+//        startActivity(intent);
 
 
 //        String packname = "com.PlayNow.Playground";
@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
 //            Toast.makeText(MainActivity.this, "You haven't install GeoPark AR",Toast.LENGTH_LONG ).show();
 //        }
 
-//        Intent intent = new Intent(this, NewsActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, NewsActivity.class);
+        startActivity(intent);
 
     }
 

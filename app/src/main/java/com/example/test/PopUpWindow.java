@@ -117,6 +117,8 @@ public class PopUpWindow extends AppCompatActivity {
 //                } else {
 //                    Toast.makeText(PopUpWindow.this, "You haven't install GeoPark AR", Toast.LENGTH_LONG).show();
 //                }
+
+
 //                if (title.equals("Boortoren")) {
                     Intent intent = new Intent(PopUpWindow.this, ar12_9.class);
                     startActivity(intent);
