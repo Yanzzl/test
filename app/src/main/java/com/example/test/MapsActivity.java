@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +59,46 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         pop = getIntent().getBooleanExtra("POP_UP", false);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(1);
+        menuItem.setChecked(true);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.ic_arrow:
+                        Intent intent0 = new Intent(MapsActivity.this, bnb.class);
+                        startActivity(intent0);
+                        break;
+
+                    case R.id.ic_android:
+
+                        break;
+
+                    case R.id.ic_books:
+                        Intent intent1 = new Intent(MapsActivity.this, ActivityTwo.class);
+                        startActivity(intent1);
+                        break;
+
+                    case R.id.ic_center_focus:
+                        Intent intent3 = new Intent(MapsActivity.this, ActivityThree.class);
+                        startActivity(intent3);
+                        break;
+
+                    case R.id.ic_backup:
+                        Intent intent4 = new Intent(MapsActivity.this, ActivityFour.class);
+                        startActivity(intent4);
+                        break;
+                }
+
+
+                return false;
+            }
+        });
     }
 
 
@@ -186,4 +227,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             markers.put(title, latLng);
         }
     }
+
+    
 }
