@@ -66,7 +66,7 @@ public class SpotlistActivity extends AppCompatActivity {
 //                    intent.putExtra("TITLE", selectedItem);
 //                    intent.putExtra("POP_UP", true);
 //                    startActivity(intent);
-                Intent intent = new Intent(SpotlistActivity.this, ElevatorActivity.class);
+                Intent intent = new Intent(SpotlistActivity.this, ElevatorB1.class);
                 intent.putExtra("TITLE", selectedItem);
                 intent.putExtra("IS_LOGIN", false);
                 startActivity(intent);
