@@ -122,7 +122,8 @@ public class SpotListAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //TODO elevator stuff
-                Intent intent = new Intent(context, ElevatorActivity.class);
+
+                Intent intent = new Intent(context, ElevatorB1.class);
                 intent.putExtra("TITLE",  list.get(position));
                 intent.putExtra("IS_LOGIN", true);
                 context.startActivity(intent);
