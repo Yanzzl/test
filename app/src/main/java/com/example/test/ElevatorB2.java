@@ -28,7 +28,6 @@ public class ElevatorB2 extends AppCompatActivity {
             }
         });
 
-
         txtGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
