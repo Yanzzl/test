@@ -95,8 +95,14 @@ public class PopUpWindow extends AppCompatActivity {
         game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PopUpWindow.this, game.class);
-                startActivity(intent);
+                if (title.equals("Boortoren")) {
+                    Intent intent = new Intent(PopUpWindow.this, game.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(PopUpWindow.this, "This function is not implemented yet. For game example," +
+                            " please try out the game function of Boortoren", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -111,8 +117,14 @@ public class PopUpWindow extends AppCompatActivity {
 //                } else {
 //                    Toast.makeText(PopUpWindow.this, "You haven't install GeoPark AR", Toast.LENGTH_LONG).show();
 //                }
-                Intent intent = new Intent(PopUpWindow.this, ar12_9.class);
-                startActivity(intent);
+                if (title.equals("Boortoren")) {
+                    Intent intent = new Intent(PopUpWindow.this, ar12_9.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(PopUpWindow.this, "This function is not implemented yet. For AR example," +
+                            " please try out the AR function of Boortoren", Toast.LENGTH_SHORT).show();
+                }
             }
 
             private boolean checkPackInfo(String packname) {
