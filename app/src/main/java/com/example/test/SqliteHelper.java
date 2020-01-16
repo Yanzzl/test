@@ -35,7 +35,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String COL1 = "ID";
     public static final String COL2 = "ITEM1";
 
-    public static final String DB_TEST = "DB_TEST34.db";
+    public static final String DB_TEST = "DB_TEST43.db";
     public static final String SPOT = "geopoint";
     public static final String title = "TITLE";
     public static final String description = "DESCRIPTION";
@@ -247,28 +247,94 @@ public class SqliteHelper extends SQLiteOpenHelper {
     }
 
     public boolean addDefaultSpots(SQLiteDatabase db) {
-        ContentValues contentValues = new ContentValues();
         String descriptionBoortoren = "Boortoren is a drilling tower which was used back in around 1919 to drill holes in the ground and receive salt.\n\n" +
                 "As time progressed, mobile drilling stations were created and this was replaced with smaller, cheaper and less striking salt houses above the caverns.";
-        contentValues.put(title, "Boortoren");
-        contentValues.put(latitude, 52.243069);
-        contentValues.put(longitude, 6.799563);
-        contentValues.put(description, descriptionBoortoren);
+        String description1 = "Het museum toont zout in al zijn aspecten: geologie, traditionele en moderne winmethode, functies, taal en volksgeloof en milieuzaken. Verder een zeewateraquarium en een grote collectie zoutvaatjes. Het zoutmuseum Delden bevindt zich vlakbij de plaats waar in 1886 zout in de Nederlandse bodem werd ontdekt. Zout is een kostbare bodemschat. In het zoutmuseum ontdekt u wat men vroeger met zout deed en waarom het nu nog steeds belangrijk voor ons is.\n" +
+                "De kern van het museum is de basisexpositie op de eerste verdieping. Hier worden verschillende aspecten van het zout belicht. Van het ontstaan van de zoutlagen, de ontdekking van zout in de Twentse bodem, de winning van zout, de chemie, het milieu tot en met de symboliek en de cultuur van het zout.\n" +
+                "Langestraat 30, 7491AG Delden, 074-3764546\n";
+        String description2 = "Het oudste natuurmuseum van Nederland met een fraaie collectie over flora en fauna, alles over planten en dieren uit de oertijd en over de aarde van binnen en buiten. Verder is er een heus rariteitenkabinet, eentje die sedert de bouw van het museum niet is meer veranderd. Natuurlandschappen en diorama''s en veel over de natuur van dinosauri?rs tot kikkers. Verschillende zalen met o.a. vogels en weersateliet en een echt werkende seismograaf, een gesteentezaal en een vogel-/zoogdierenzaal met een mooi overzicht van de Nederlandse vogel- en zoogdierbevolking. In de landschappenzaal is de geschiedenis en toekomst van het Twentsche landschap het onderwerp. Met prachtige foto''s, diorama''s en kaarten. \n" +
+                "Ook erg geschikt voor kinderen: tussen de slagtanden van een mammoet staan? Snijden met een vuursteen zoals onze voorouders? De schubben van een fossiele vis aanraken? Dat kan allemaal in de paleontologiezaal van het museum. Daar vind je ook fossielen, versteende afdrukken van planten en dieren.\n";
+        String description3 = "To be added ";
+        String description4 = "To be added ";
+        String description5 = "To be added ";
+        String description6 = "Permanente expositie van o.a. planten, gesteenten en mineralen, en fossielen in hoofdzaak afkomstig uit Twente en omgeving. Verder, diorama''s met Nederlandse zoogdieren en vogels. Fossiele en recente walvissen. Nederlandse vissen, reptielen en amfibie?n, modellen en levend. ''s Zomers levend bijenvolkje. Sterrenwacht, beperkt geopend.\n";
+        String description7 = "Permanente expositie van archeologie, fossielen, gesteenten en prehistorie in het Raadhuis, Raadhuisplein 1, 7581 AG Losser, 053-5377462\n";
+        String description8 = "Het Dr. W. Staringmonument met zandsteengroeve aan de Dr. Staringstraat. \n" +
+                "In 1965 waren er plannen om op de Losserse es een woonwijk te bouwen. Op initiatief van W.F. Anderson, inwoner van Losser en verwoed amateur-geoloog, kwam een groepje amateur-geologen op het idee om de door Staring blootgelegde zandsteenbank opnieuw te ontsluiten. Deze keer werd al op vier meter diepte de zandsteen aangetroffen. Eromheen werd door de gemeente een plantsoen aangelegd en W.C. H. Staring kreeg de eer die hem toekwam: de groeve werd naar hem vernoemd en bij de ingang kwam een borstbeeld van hem te staan. \n" +
+                "Dr. Staringstraat, Losser. Bezoek na tel. overleg. 053-5385623. \n" +
+                "zie ook artikel Zandsteen in Twente \n";
+        String description9 = "Permanente expositie van fossielen, do, vrij 10:00-12:00, 14:00-17:00; zo 14:00-17:00 uur. \n";
 
-        long result = db.insert(SPOT, null, contentValues);
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(title, "Boortoren");
+//        contentValues.put(latitude, 52.243069);
+//        contentValues.put(longitude, 6.799563);
+//        contentValues.put(description, descriptionBoortoren);
 
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
+
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Boortoren', 52.243069, 6.799563, '" + descriptionBoortoren + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Salt Museum', 52.263650, 6.712268, '" + description1 + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Natura Docet Wonderryck Twente', 52.371659, 7.001318, '" + description2 + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Stichting Veenmuseum', 52.447143, 6.653466, '" + description3 + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('geologische route Sallandse Heuvelrug', 52.347848, 6.418660, '" + description4 + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Envita Almelo B.V', 52.341766, 6.681827, '" + description5 + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Natuurmuseum Enschede', 52.233029, 6.894875, '" + description6 + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Anderson museum in Losser', 52.263837, 7.005692, '" + description7 + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Staringmonument met zandsteengroeve in Losser', 52.256800, 7.006776, '" + description8 + "')");
+        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Museum De Trilobiet in Weerselo', 52.336308, 6.879793, '" + description9 + "')");
+
+//        long result = db.insert(SPOT, null, contentValues);
+//
+//        if (result == -1) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+        return true;
     }
 
     public boolean addDefaultPics(SQLiteDatabase db) {
         Uri zoutwinning = getUriToDrawable(context, R.drawable.zoutwinning);
         Uri salt_house = getUriToDrawable(context, R.drawable.salt_house);
+        Uri pic11 = getUriToDrawable(context, R.drawable.pic11);
+        Uri pic21 = getUriToDrawable(context, R.drawable.pic21);
+        Uri pic22 = getUriToDrawable(context, R.drawable.pic22);
+        Uri pic31 = getUriToDrawable(context, R.drawable.pic31);
+        Uri pic32 = getUriToDrawable(context, R.drawable.pic32);
+        Uri pic4 = getUriToDrawable(context, R.drawable.pic4);
+        Uri pic5 = getUriToDrawable(context, R.drawable.pic5);
+        Uri pic61 = getUriToDrawable(context, R.drawable.pic61);
+        Uri pic62 = getUriToDrawable(context, R.drawable.pic62);
+        Uri pic71 = getUriToDrawable(context, R.drawable.pic71);
+        Uri pic72 = getUriToDrawable(context, R.drawable.pic72);
+        Uri pic81 = getUriToDrawable(context, R.drawable.pic81);
+        Uri pic91 = getUriToDrawable(context, R.drawable.pic91);
+
         db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Boortoren', '" + zoutwinning.toString() + "')");
         db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Boortoren', '" + salt_house.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Salt Museum', '" + pic11.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Natura Docet Wonderryck Twente', '" + pic21.toString() + "')");
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Natura Docet Wonderryck Twente', '" + pic22.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Stichting Veenmuseum', '" + pic31.toString() + "')");
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Stichting Veenmuseum', '" + pic32.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('geologische route Sallandse Heuvelrug', '" + pic4.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Envita Almelo B.V', '" + pic5.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Natuurmuseum Enschede', '" + pic61.toString() + "')");
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Natuurmuseum Enschede', '" + pic62.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Anderson museum in Losser', '" + pic71.toString() + "')");
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Anderson museum in Losser', '" + pic72.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Staringmonument met zandsteengroeve in Losser', '" + pic81.toString() + "')");
+
+        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Museum De Trilobiet in Weerselo', '" + pic91.toString() + "')");
+
         return true;
     }
 
@@ -278,7 +344,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 "Boortoren is a drilling tower which was used back in around 1919 to drill holes in the ground and receive salt.\n\n" +
                 "As time progressed, mobile drilling stations were created and this was replaced with smaller, cheaper and less striking salt houses above the caverns.";
         Uri zoutwinning = getUriToDrawable(context, R.drawable.zoutwinning);
-        contentValues.put(title, "What's new at Boortoren?");
+        contentValues.put(title, "What is new at Boortoren?");
         contentValues.put(content, descriptionBoortoren);
         contentValues.put(newsPic, zoutwinning.toString());
 //        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Boortoren', '" + zoutwinning.toString() + "')");
@@ -407,6 +473,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void removeGeoPoint(String title_) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(SPOT, "TITLE = '" + title_ + "'", null);
+        db.delete(STAR, "TITLE = '" + title_ + "'", null);
     }
 
     public void removeGeoPics(String title_) {

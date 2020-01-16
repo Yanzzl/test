@@ -25,6 +25,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".TestingActivity"
+            android:label="GeoPoints"
+            android:theme="@style/bar"
+            android:parentActivityName=".MainActivity"
+            />
         <activity android:name=".ElevatorB2"></activity>
         <activity android:name=".ElevatorB1" />
         <activity android:name=".EditNews" />
@@ -41,8 +47,12 @@
             android:theme="@style/bar" />
         <activity android:name=".ElevatorActivity" />
         <activity android:name=".EditStoryActivity" />
-        <activity android:name=".SpotlistActivity" />
-        <activity android:name=".artest" />
+        <activity android:name=".SpotlistActivity"
+            android:label="GeoPoints"
+            android:theme="@style/bar"
+            android:parentActivityName=".MainActivity"
+            />
+        <!-- <activity android:name=".artest" /> -->
         <activity
             android:name=".accounts.Register"
             android:parentActivityName=".accounts.Login" />
@@ -129,7 +139,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <activity android:name=".augmentedimage.artest2" />
+<!--        <activity android:name=".augmentedimage.artest2" />-->
 
         <meta-data
             android:name="com.google.ar.core"

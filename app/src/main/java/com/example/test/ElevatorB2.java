@@ -12,6 +12,9 @@ public class ElevatorB2 extends AppCompatActivity {
     Button btnUp;
     TextView txtGame;
 
+    String spotTitle;
+    boolean isLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,8 @@ public class ElevatorB2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ElevatorB2.this, ElevatorB1.class);
+                intent.putExtra("TITLE", spotTitle);
+                intent.putExtra("IS_LOGIN", isLogin);
                 startActivity(intent);
             }
         });
@@ -35,5 +40,18 @@ public class ElevatorB2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isLogin) {
+            Intent intent = new Intent(this, TestingActivity.class);
+            this.finishAffinity();
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, SpotlistActivity.class);
+            this.finishAffinity();
+            startActivity(intent);
+        }
     }
 }

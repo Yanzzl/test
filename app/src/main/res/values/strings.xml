@@ -26,5 +26,8 @@
     </string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="or_line">------------------------or------------------------</string>
+    <string name="title_activity_testing">TestingActivity</string>
+    <string name="tab_1">All</string>
+    <string name="tab_2">Favorite</string>
 
 </resources>

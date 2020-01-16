@@ -30,7 +30,6 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         this.list = list;
         this.context = context;
         dbHelper = new SqliteHelper(context);
-
     }
 
     @Override
@@ -104,9 +103,11 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //TODO elevator stuff
-                Intent intent = new Intent(context, ElevatorActivity.class);
-                intent.putExtra("TITLE",  list.get(position));
+                Intent intent = new Intent(context, ElevatorB1.class);
+                intent.putExtra("TITLE", list.get(position));
+                intent.putExtra("IS_LOGIN", false);
                 context.startActivity(intent);
+
 //                Intent intent = new Intent(context, MapsActivity.class);
 //                intent.putExtra("TITLE", list.get(position));
 //                intent.putExtra("POP_UP", true);
