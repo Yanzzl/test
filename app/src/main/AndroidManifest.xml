@@ -45,6 +45,15 @@
             android:label="@string/title_activity_a2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EditNews" />
+        <activity
+            android:name=".TestingActivity"
+            android:label="GeoPoints"
+            android:theme="@style/bar"
+            android:parentActivityName=".MainActivity"
+            />
+        <activity android:name=".ElevatorB2"></activity>
+        <activity android:name=".ElevatorB1" />
+        <activity android:name=".EditNews" />
         <activity android:name=".NewsPage" />
         <activity android:name=".MakeNews" />
         <activity android:name=".NewsActivity" />
@@ -58,7 +67,12 @@
             android:theme="@style/bar" />
         <activity android:name=".ElevatorActivity" />
         <activity android:name=".EditStoryActivity" />
-        <activity android:name=".SpotlistActivity" />
+        <activity android:name=".SpotlistActivity"
+            android:label="GeoPoints"
+            android:theme="@style/bar"
+            android:parentActivityName=".MainActivity"
+            />
+        <!-- <activity android:name=".artest" /> -->
         <activity
             android:name=".accounts.Register"
             android:parentActivityName=".accounts.Login" />
@@ -141,6 +155,7 @@
 
         </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+<!--        <activity android:name=".augmentedimage.artest2" />-->
 
         <meta-data
             android:name="com.google.ar.core"

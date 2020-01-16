@@ -13,13 +13,20 @@ public class ElevatorActivity extends AppCompatActivity {
     Button btnViewGame2;
     Button btnViewMap2;
 
+    String spotTitle;
+    boolean isLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elevator);
 
-        Intent intent = getIntent();
-        String p1 = intent.getStringExtra("Key");
+        spotTitle = getIntent().getStringExtra("TITLE");
+        isLogin = getIntent().getBooleanExtra("IS_LOGIN", false);
+
+        //TODO added
+//        Intent intent = getIntent();
+//        String p1 = intent.getStringExtra("Key");
 
         btnViewGame = (Button) findViewById(R.id.door_01);
 
@@ -37,6 +44,8 @@ public class ElevatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ElevatorActivity.this, MapsActivity.class);
+                intent.putExtra("TITLE", spotTitle);
+                intent.putExtra("POP_UP", true);
                 startActivity(intent);
             }
         });
@@ -61,4 +70,18 @@ public class ElevatorActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        if (isLogin) {
+            Intent intent = new Intent(this, TestingActivity.class);
+            this.finishAffinity();
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, SpotlistActivity.class);
+            this.finishAffinity();
+            startActivity(intent);
+        }
+    }
+
 }

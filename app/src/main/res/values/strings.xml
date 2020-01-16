@@ -45,5 +45,8 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="google_places_api_key">aaa</string>
+    <string name="title_activity_testing">TestingActivity</string>
+    <string name="tab_1">All</string>
+    <string name="tab_2">Favorite</string>
 
 </resources>
