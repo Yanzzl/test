@@ -20,7 +20,7 @@ public class ElevatorB1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elevator_b1);
 
-        btnDown = (Button) findViewById(R.id.btnDown);
+        btnDown = (Button) findViewById(R.id.btnDownF1);
         txtMap = (TextView) findViewById(R.id.txtMap);
 
         spotTitle = getIntent().getStringExtra("TITLE");

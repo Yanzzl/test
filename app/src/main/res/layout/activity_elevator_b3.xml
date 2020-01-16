@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ElevatorB1"
-    android:background="@drawable/b">
+    tools:context=".ElevatorB3"
+    android:background="@drawable/b"
+    >
 
-    <TextView android:text="B1"
+    <TextView android:text="B3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -16,14 +17,14 @@
         android:textColor="@color/green"
         />
 
-    <TextView android:id="@+id/txtMap"
-        android:text="Map"
+    <TextView android:id="@+id/txtGame"
+        android:text="Game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textSize="40dp"
-        android:textColor="@color/green"/>
-
+        android:textColor="@color/green"
+        />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -31,21 +32,23 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true">
         <Button
-            android:id="@+id/btnUpF1"
-            android:layout_width="78dp"
-            android:layout_height="138dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/up_black"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/btnDownF1"
+            android:id="@+id/btnUpF3"
             android:layout_width="78dp"
             android:layout_height="138dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
-            android:background="@drawable/down"
+            android:background="@drawable/up"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnDownF3"
+            android:layout_width="78dp"
+            android:layout_height="138dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/down_black"
             tools:visibility="visible" />
     </LinearLayout>
 
