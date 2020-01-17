@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SpotlistActivity">
+    tools:context=".NewsActivity">
 
     <Button
-        android:id="@+id/addSpot_s"
+        android:id="@+id/addNews_news"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
 
@@ -16,7 +16,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="1"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="+"
@@ -24,11 +23,13 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:visibility="gone" />
+
     <ListView
-        android:id="@+id/spotList_sl"
-        android:layout_weight="1"
+        android:id="@+id/list_news"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

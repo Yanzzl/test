@@ -6,20 +6,19 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.test.accounts.AccountPage;
+import com.example.test.accounts.Login;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,10 +27,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -42,7 +40,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private boolean pop;
     SqliteHelper dbHelper;
     HashMap<String, LatLng> markers;
-
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
 
 
 
@@ -58,6 +57,55 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         pop = getIntent().getBooleanExtra("POP_UP", false);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.ic_news:
+                        Intent intent1 = new Intent(MapsActivity.this, NewsActivity.class);
+                        startActivity(intent1);
+                        break;
+
+                    case R.id.ic_list:
+                        if (dbHelper.isLogin()) {
+                            Intent intent2 = new Intent(MapsActivity.this, TestingActivity.class);
+                            startActivity(intent2);
+                        } else {
+                            Intent intent2 = new Intent(MapsActivity.this, SpotlistActivity.class);
+                            startActivity(intent2);
+                        }
+                        break;
+
+                    case R.id.ic_Map:
+//                        Intent intent3 = new Intent(MapsActivity.this, MapsActivity.class);
+//                        startActivity(intent3);
+                        break;
+
+                    case R.id.ic_account:
+                        if (dbHelper.isLogin()) {
+                            Intent intent4 = new Intent(MapsActivity.this, AccountPage.class);
+                            startActivity(intent4);
+
+                        } else {
+                            Intent intent4 = new Intent(MapsActivity.this, Login.class);
+                            startActivity(intent4);
+
+                        }
+
+                        break;
+                }
+
+
+                return false;
+            }
+        });
     }
 
 
@@ -186,4 +234,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             markers.put(title, latLng);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            moveTaskToBack(true);
+//            android.os.Process.killProcess(android.os.Process.myPid());
+//            System.exit(1);
+        } else {
+            Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
+        }
+        mBackPressed = System.currentTimeMillis();
+    }
+
+    
 }

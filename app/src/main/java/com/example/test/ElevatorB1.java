@@ -51,11 +51,11 @@ public class ElevatorB1 extends AppCompatActivity {
     public void onBackPressed() {
         if (isLogin) {
             Intent intent = new Intent(this, TestingActivity.class);
-            this.finishAffinity();
+//            this.finishAffinity();
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, SpotlistActivity.class);
-            this.finishAffinity();
+//            this.finishAffinity();
             startActivity(intent);
         }
     }

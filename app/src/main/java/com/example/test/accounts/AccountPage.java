@@ -1,5 +1,6 @@
 package com.example.test.accounts;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -31,10 +32,16 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.test.BottomNavigationViewHelper;
 import com.example.test.MainActivity;
+import com.example.test.MapsActivity;
+import com.example.test.NewsActivity;
 import com.example.test.R;
+import com.example.test.SpotlistActivity;
 import com.example.test.SqliteHelper;
+import com.example.test.TestingActivity;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.BufferedInputStream;
@@ -45,6 +52,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public class AccountPage extends AppCompatActivity {
 
@@ -91,6 +99,57 @@ public class AccountPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AccountPage.this, Liked.class);
                 startActivity(intent);
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(3);
+        menuItem.setChecked(true);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+
+
+                    case R.id.ic_news:
+                        Intent intent1 = new Intent(AccountPage.this, NewsActivity.class);
+                        startActivity(intent1);
+                        break;
+
+                    case R.id.ic_list:
+                        if (dbHelper.isLogin()) {
+                            Intent intent = new Intent(AccountPage.this, TestingActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(AccountPage.this, SpotlistActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+
+                    case R.id.ic_Map:
+                        Intent intent3 = new Intent(AccountPage.this, MapsActivity.class);
+                        startActivity(intent3);
+                        break;
+
+                    case R.id.ic_account:
+//                        if (dbHelper.isLogin()) {
+//                            Intent intent4 = new Intent(AccountPage.this, AccountPage.class);
+//                            startActivity(intent4);
+//                            startActivity(intent4);
+//                        } else {
+//                            Intent intent4 = new Intent(AccountPage.this, Login.class);
+//                            startActivity(intent4);
+//                            startActivity(intent4);
+//                        }
+
+                        break;
+                }
+
+
+                return false;
             }
         });
     }
