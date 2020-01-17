@@ -51,7 +51,7 @@ public class ElevatorB2 extends AppCompatActivity {
         txtAR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ElevatorB2.this, ar.class);
+                Intent intent = new Intent(ElevatorB2.this, ar12_9.class);
                 intent.putExtra("TITLE", spotTitle);
                 intent.putExtra("POP_UP", true);
                 startActivity(intent);
