@@ -52,10 +52,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/title_news"
+                android:paddingTop="4dp"
                 android:text="title"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/picture_news"
-                android:textSize="30sp"
+                android:textSize="27sp"
                 />
 
 <!--            <TextView-->

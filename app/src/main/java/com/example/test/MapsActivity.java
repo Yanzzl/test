@@ -6,10 +6,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -42,8 +47,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     HashMap<String, LatLng> markers;
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,11 +132,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         for (Map.Entry<String, LatLng> entry : markers.entrySet()) {
             mMap.addMarker(new MarkerOptions().position(entry.getValue()).title(entry.getKey()));
         }
-        //TODO zoom location
-        LatLng saltMine = new LatLng(52.243069, 6.799563);
-//        mMap.addMarker(new MarkerOptions().position(saltMine).title("Salt Mine"));
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(saltMine, 15));
         mMap.setOnMarkerClickListener(this);
 
         try {
@@ -152,9 +150,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         enableMyLocation();
 
+        //set zoom
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            double longitude = location.getLongitude();
+            double latitude = location.getLatitude();
+            LatLng current = new LatLng(latitude, longitude);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 10));
+        } else {
+            LatLng zoom = new LatLng(52.3, 6.8);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zoom, 10));
+        }
+
+
         if (pop) {
             String title = getIntent().getStringExtra("TITLE");
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markers.get(title), 15));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markers.get(title), 12));
             Intent intent = new Intent(MapsActivity.this, PopUpWindow.class);
             intent.putExtra("TITLE", title);
             startActivity(intent);
@@ -163,7 +177,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 12));
         Intent intent = new Intent(MapsActivity.this, PopUpWindow.class);
         intent.putExtra("TITLE", marker.getTitle());
         startActivity(intent);
@@ -250,5 +264,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mBackPressed = System.currentTimeMillis();
     }
 
-    
+
 }

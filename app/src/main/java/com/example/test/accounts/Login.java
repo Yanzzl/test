@@ -27,6 +27,12 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        dbHelper = new SqliteHelper(this);
+        if (dbHelper.isLogin()) {
+            Intent intent = new Intent(this, NewsActivity.class);
+            startActivity(intent);
+        }
+
 
         final ImageView info = findViewById(R.id.info_l);
         final Button login = findViewById(R.id.login_l);
@@ -36,9 +42,6 @@ public class Login extends AppCompatActivity {
         user = findViewById(R.id.username_l);
         final EditText pass;
         pass = findViewById(R.id.password_l);
-
-        dbHelper = new SqliteHelper(this);
-
 
 
         login.setOnClickListener(new View.OnClickListener() {
