@@ -3,11 +3,7 @@ package com.example.test.accounts;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.hardware.camera2.params.BlackLevelPattern;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,19 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.test.BottomNavigationViewHelper;
-import com.example.test.MainActivity;
-import com.example.test.MapsActivity;
 import com.example.test.NewsActivity;
 import com.example.test.R;
-import com.example.test.SpotlistActivity;
 import com.example.test.SqliteHelper;
-import com.example.test.bnb;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {

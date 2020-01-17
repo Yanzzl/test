@@ -25,17 +25,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".bnb">
-
-        </activity>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-            android:name=".a2"
-            android:label="@string/title_activity_a2"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".EditNews" />
         <activity
             android:name=".TestingActivity"
@@ -48,11 +42,7 @@
         <activity android:name=".NewsPage" />
         <activity android:name=".MakeNews" />
         <activity android:name=".NewsActivity">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+            </activity>
 
 
         <activity android:name=".ar12_9" />
@@ -73,10 +63,20 @@
         <!-- <activity android:name=".artest" /> -->
         <activity
             android:name=".accounts.Register"
-            android:parentActivityName=".accounts.Login" />
+            android:parentActivityName=".accounts.Login">
+
+
+        </activity>
+
         <activity
             android:name=".accounts.Login"
-            android:parentActivityName=".NewsActivity" />
+            android:parentActivityName=".NewsActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".accounts.AccountPage"
             android:label="Account"
@@ -120,27 +120,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity
-            android:name=".ar"
-            android:label="ar"
-
-            android:theme="@style/bar">
-
-        </activity>
-        <activity
-            android:name=".account"
-            android:label="account"
-
-            android:theme="@style/bar">
-
-        </activity>
-        <activity
-            android:name=".map"
-            android:label="map"
-
-            android:theme="@style/bar">
-
-        </activity>
         <activity android:name=".MainActivity">
 
         </activity>
