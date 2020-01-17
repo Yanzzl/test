@@ -6,14 +6,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -30,9 +26,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -75,21 +69,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         startActivity(intent0);
                         break;
 
-                    case R.id.ic_android:
+                    case R.id.ic_news:
 
                         break;
 
-                    case R.id.ic_books:
+                    case R.id.ic_list:
                         Intent intent1 = new Intent(MapsActivity.this, ActivityTwo.class);
                         startActivity(intent1);
                         break;
 
-                    case R.id.ic_center_focus:
+                    case R.id.ic_Map:
                         Intent intent3 = new Intent(MapsActivity.this, ActivityThree.class);
                         startActivity(intent3);
                         break;
 
-                    case R.id.ic_backup:
+                    case R.id.ic_account:
                         Intent intent4 = new Intent(MapsActivity.this, ActivityFour.class);
                         startActivity(intent4);
                         break;

@@ -45,21 +45,21 @@ public class ActivityThree extends AppCompatActivity {
                         startActivity(intent0);
                         break;
 
-                    case R.id.ic_android:
+                    case R.id.ic_news:
                         Intent intent1 = new Intent(ActivityThree.this, ActivityOne.class);
                         startActivity(intent1);
                         break;
 
-                    case R.id.ic_books:
+                    case R.id.ic_list:
                         Intent intent2 = new Intent(ActivityThree.this, ActivityTwo.class);
                         startActivity(intent2);
                         break;
 
-                    case R.id.ic_center_focus:
+                    case R.id.ic_Map:
 
                         break;
 
-                    case R.id.ic_backup:
+                    case R.id.ic_account:
                         Intent intent4 = new Intent(ActivityThree.this, ActivityFour.class);
                         startActivity(intent4);
                         break;

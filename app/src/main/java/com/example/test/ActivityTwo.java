@@ -45,21 +45,21 @@ public class ActivityTwo extends AppCompatActivity {
                         startActivity(intent0);
                         break;
 
-                    case R.id.ic_android:
+                    case R.id.ic_news:
                         Intent intent1 = new Intent(ActivityTwo.this, ActivityOne.class);
                         startActivity(intent1);
                         break;
 
-                    case R.id.ic_books:
+                    case R.id.ic_list:
 
                         break;
 
-                    case R.id.ic_center_focus:
+                    case R.id.ic_Map:
                         Intent intent3 = new Intent(ActivityTwo.this, ActivityThree.class);
                         startActivity(intent3);
                         break;
 
-                    case R.id.ic_backup:
+                    case R.id.ic_account:
                         Intent intent4 = new Intent(ActivityTwo.this, ActivityFour.class);
                         startActivity(intent4);
                         break;

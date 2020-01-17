@@ -45,22 +45,22 @@ public class ActivityFour extends AppCompatActivity {
                         startActivity(intent0);
                         break;
 
-                    case R.id.ic_android:
+                    case R.id.ic_news:
                         Intent intent1 = new Intent(ActivityFour.this, ActivityOne.class);
                         startActivity(intent1);
                         break;
 
-                    case R.id.ic_books:
+                    case R.id.ic_list:
                         Intent intent2 = new Intent(ActivityFour.this, ActivityTwo.class);
                         startActivity(intent2);
                         break;
 
-                    case R.id.ic_center_focus:
+                    case R.id.ic_Map:
                         Intent intent3 = new Intent(ActivityFour.this, ActivityThree.class);
                         startActivity(intent3);
                         break;
 
-                    case R.id.ic_backup:
+                    case R.id.ic_account:
                         break;
                 }
 

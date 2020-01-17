@@ -15,14 +15,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.test.accounts.AccountPage;
+import com.example.test.accounts.Login;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 
 public class bnb extends AppCompatActivity {
     private static final String TAG = "bnb";
 
     private SectionsPageAdapter mSectionsPageAdapter;
-
+    SqliteHelper dbHelper;
     private ViewPager mViewPager;
 
 
@@ -30,7 +31,7 @@ public class bnb extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bnb);
-
+        dbHelper = new SqliteHelper(this);
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
@@ -59,24 +60,32 @@ public class bnb extends AppCompatActivity {
 
                         break;
 
-                    case R.id.ic_android:
+                    case R.id.ic_news:
                         Intent intent1 = new Intent(bnb.this, MapsActivity.class);
                         startActivity(intent1);
                         break;
 
-                    case R.id.ic_books:
+                    case R.id.ic_list:
                         Intent intent2 = new Intent(bnb.this, SpotlistActivity.class);
                         startActivity(intent2);
                         break;
 
-                    case R.id.ic_center_focus:
-                        Intent intent3 = new Intent(bnb.this, ActivityThree.class);
+                    case R.id.ic_Map:
+                        Intent intent3 = new Intent(bnb.this, NewsActivity.class);
                         startActivity(intent3);
                         break;
 
-                    case R.id.ic_backup:
-                        Intent intent4 = new Intent(bnb.this, ActivityFour.class);
-                        startActivity(intent4);
+                    case R.id.ic_account:
+                        if (dbHelper.isLogin()) {
+                            Intent intent4 = new Intent(bnb.this, AccountPage.class);
+                            startActivity(intent4);
+                            startActivity(intent4);
+                        } else {
+                            Intent intent4 = new Intent(bnb.this, Login.class);
+                            startActivity(intent4);
+                            startActivity(intent4);
+                        }
+
                         break;
                 }
 

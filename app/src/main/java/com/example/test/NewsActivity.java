@@ -1,14 +1,21 @@
 package com.example.test;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.test.accounts.AccountPage;
+import com.example.test.accounts.Login;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -53,13 +60,64 @@ public class NewsActivity extends AppCompatActivity {
         //handle listview and assign adapter
         listView.setAdapter(adapter);
 
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.ic_arrow:
+
+                        break;
+
+                    case R.id.ic_news:
+//                        Intent intent1 = new Intent(NewsActivity.this, MapsActivity.class);
+//                        startActivity(intent1);
+//                        break;
+
+                    case R.id.ic_list:
+                        Intent intent2 = new Intent(NewsActivity.this, SpotlistActivity.class);
+                        startActivity(intent2);
+                        break;
+
+                    case R.id.ic_Map:
+                        Intent intent3 = new Intent(NewsActivity.this, MapsActivity.class);
+                        startActivity(intent3);
+                        break;
+
+                    case R.id.ic_account:
+                        if (dbHelper.isLogin()) {
+                            Intent intent4 = new Intent(NewsActivity.this, AccountPage.class);
+                            startActivity(intent4);
+                            startActivity(intent4);
+                        } else {
+                            Intent intent4 = new Intent(NewsActivity.this, Login.class);
+                            startActivity(intent4);
+                            startActivity(intent4);
+                        }
+
+                        break;
+                }
+
+
+                return false;
+            }
+        });
+
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        this.finishAffinity();
-        startActivity(intent);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Intent intent = new Intent(this, MainActivity.class);
+//        this.finishAffinity();
+//        startActivity(intent);
+//    }
+    
+    
 
 }
