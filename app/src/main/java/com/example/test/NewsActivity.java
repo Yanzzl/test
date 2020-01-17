@@ -31,7 +31,7 @@ public class NewsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
+        setContentView(R.layout.activity_news2);
 
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -85,7 +85,7 @@ public class NewsActivity extends AppCompatActivity {
                     case R.id.ic_news:
 //                        Intent intent1 = new Intent(NewsActivity.this, MapsActivity.class);
 //                        startActivity(intent1);
-//                        break;
+                        break;
 
                     case R.id.ic_list:
                         if (dbHelper.isLogin()) {

@@ -107,7 +107,7 @@ public class SpotlistActivity extends AppCompatActivity {
                     case R.id.ic_list:
 //                        Intent intent2 = new Intent(SpotlistActivity.this, SpotlistActivity.class);
 //                        startActivity(intent2);
-//                        break;
+                        break;
 
                     case R.id.ic_Map:
                         Intent intent3 = new Intent(SpotlistActivity.this, MapsActivity.class);

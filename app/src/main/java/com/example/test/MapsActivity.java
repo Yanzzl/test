@@ -69,17 +69,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_news:
-                            Intent intent1 = new Intent(MapsActivity.this, NewsActivity.class);
+                        Intent intent1 = new Intent(MapsActivity.this, NewsActivity.class);
                         startActivity(intent1);
-//                        break;
+                        break;
 
                     case R.id.ic_list:
                         if (dbHelper.isLogin()) {
-                            Intent intent = new Intent(MapsActivity.this, TestingActivity.class);
-                            startActivity(intent);
+                            Intent intent2 = new Intent(MapsActivity.this, TestingActivity.class);
+                            startActivity(intent2);
                         } else {
-                            Intent intent = new Intent(MapsActivity.this, SpotlistActivity.class);
-                            startActivity(intent);
+                            Intent intent2 = new Intent(MapsActivity.this, SpotlistActivity.class);
+                            startActivity(intent2);
                         }
                         break;
 

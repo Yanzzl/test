@@ -19,7 +19,7 @@
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="+"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:divider="#00000000" />
+         />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,3 +49,4 @@
 
 
 </LinearLayout>
+

@@ -67,7 +67,7 @@ public class TestingActivity extends AppCompatActivity {
                     case R.id.ic_list:
 //                        Intent intent2 = new Intent(TestingActivity.this, TestingActivity.class);
 //                        startActivity(intent2);
-//                        break;
+                        break;
 
                     case R.id.ic_Map:
                         Intent intent3 = new Intent(TestingActivity.this, MapsActivity.class);
