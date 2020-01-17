@@ -31,15 +31,19 @@
 
 
         <activity android:name=".EditNews" />
-        <activity android:name=".ElevatorB2"></activity>
+        <activity android:name=".ElevatorB2"
+            android:parentActivityName=".SpotlistActivity"></activity>
         <activity
             android:name=".TestingActivity"
             android:label="GeoPoints"
 
             android:theme="@style/bar" />
-        <activity android:name=".ElevatorB3" />
-        <activity android:name=".ElevatorB1" />
-        <activity android:name=".EditNews" />
+        <activity
+            android:name=".ElevatorB3"
+            android:parentActivityName=".SpotlistActivity"/>
+        <activity android:name=".ElevatorB1"
+            android:parentActivityName=".SpotlistActivity"/>
+
         <activity android:name=".NewsPage" />
         <activity android:name=".MakeNews" />
         <activity android:name=".NewsActivity" />
@@ -105,7 +109,7 @@
         <activity
             android:name=".game"
             android:label="game"
-
+            android:parentActivityName=".ElevatorB3"
             android:theme="@style/bar">
 
         </activity>
