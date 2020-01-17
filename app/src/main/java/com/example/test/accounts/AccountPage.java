@@ -59,7 +59,8 @@ public class AccountPage extends AppCompatActivity {
     ImageView picture;
     SqliteHelper dbHelper;
     String currentUser;
-
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -307,7 +308,17 @@ public class AccountPage extends AppCompatActivity {
 //        this.finishAffinity();
 //        startActivity(intent);
 //    }
-
+    @Override
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            moveTaskToBack(true);
+    //            android.os.Process.killProcess(android.os.Process.myPid());
+    //            System.exit(1);
+        } else {
+            Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
+        }
+        mBackPressed = System.currentTimeMillis();
+    }
 
 
 
