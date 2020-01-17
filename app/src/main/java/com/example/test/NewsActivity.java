@@ -91,25 +91,30 @@ public class NewsActivity extends AppCompatActivity {
                         if (dbHelper.isLogin()) {
                             Intent intent = new Intent(NewsActivity.this, TestingActivity.class);
                             startActivity(intent);
+                            overridePendingTransition(0,0);
                         } else {
                             Intent intent = new Intent(NewsActivity.this, SpotlistActivity.class);
                             startActivity(intent);
+                            overridePendingTransition(0,0);
                         }
                         break;
 
                     case R.id.ic_Map:
                         Intent intent3 = new Intent(NewsActivity.this, MapsActivity.class);
                         startActivity(intent3);
+                        overridePendingTransition(0,0);
                         break;
 
                     case R.id.ic_account:
                         if (dbHelper.isLogin()) {
                             Intent intent4 = new Intent(NewsActivity.this, AccountPage.class);
                             startActivity(intent4);
+                            overridePendingTransition(0,0);
 
                         } else {
                             Intent intent4 = new Intent(NewsActivity.this, Login.class);
                             startActivity(intent4);
+//                            overridePendingTransition(0,0);
 
                         }
 

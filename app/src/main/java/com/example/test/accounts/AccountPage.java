@@ -117,21 +117,25 @@ public class AccountPage extends AppCompatActivity {
                     case R.id.ic_news:
                         Intent intent1 = new Intent(AccountPage.this, NewsActivity.class);
                         startActivity(intent1);
+                        overridePendingTransition(0,0);
                         break;
 
                     case R.id.ic_list:
                         if (dbHelper.isLogin()) {
                             Intent intent = new Intent(AccountPage.this, TestingActivity.class);
                             startActivity(intent);
+                            overridePendingTransition(0,0);
                         } else {
                             Intent intent = new Intent(AccountPage.this, SpotlistActivity.class);
                             startActivity(intent);
+                            overridePendingTransition(0,0);
                         }
                         break;
 
                     case R.id.ic_Map:
                         Intent intent3 = new Intent(AccountPage.this, MapsActivity.class);
                         startActivity(intent3);
+                        overridePendingTransition(0,0);
                         break;
 
                     case R.id.ic_account:

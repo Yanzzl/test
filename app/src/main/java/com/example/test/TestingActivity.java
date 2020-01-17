@@ -62,6 +62,7 @@ public class TestingActivity extends AppCompatActivity {
                     case R.id.ic_news:
                         Intent intent1 = new Intent(TestingActivity.this, NewsActivity.class);
                         startActivity(intent1);
+                        overridePendingTransition(0,0);
                         break;
 
                     case R.id.ic_list:
@@ -72,17 +73,18 @@ public class TestingActivity extends AppCompatActivity {
                     case R.id.ic_Map:
                         Intent intent3 = new Intent(TestingActivity.this, MapsActivity.class);
                         startActivity(intent3);
+                        overridePendingTransition(0,0);
                         break;
 
                     case R.id.ic_account:
                         if (dbHelper.isLogin()) {
                             Intent intent4 = new Intent(TestingActivity.this, AccountPage.class);
                             startActivity(intent4);
-
+                            overridePendingTransition(0,0);
                         } else {
                             Intent intent4 = new Intent(TestingActivity.this, Login.class);
                             startActivity(intent4);
-
+//                            overridePendingTransition(0,0);
                         }
 
                         break;

@@ -71,15 +71,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     case R.id.ic_news:
                         Intent intent1 = new Intent(MapsActivity.this, NewsActivity.class);
                         startActivity(intent1);
+                        overridePendingTransition(0,0);
                         break;
 
                     case R.id.ic_list:
                         if (dbHelper.isLogin()) {
                             Intent intent2 = new Intent(MapsActivity.this, TestingActivity.class);
                             startActivity(intent2);
+                            overridePendingTransition(0,0);
                         } else {
                             Intent intent2 = new Intent(MapsActivity.this, SpotlistActivity.class);
                             startActivity(intent2);
+                            overridePendingTransition(0,0);
                         }
                         break;
 
@@ -92,11 +95,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         if (dbHelper.isLogin()) {
                             Intent intent4 = new Intent(MapsActivity.this, AccountPage.class);
                             startActivity(intent4);
-
+                            overridePendingTransition(0,0);
                         } else {
                             Intent intent4 = new Intent(MapsActivity.this, Login.class);
                             startActivity(intent4);
-
+//                            overridePendingTransition(0,0);
                         }
 
                         break;
