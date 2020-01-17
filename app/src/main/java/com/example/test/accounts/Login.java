@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.hardware.camera2.params.BlackLevelPattern;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,12 +15,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.test.BottomNavigationViewHelper;
 import com.example.test.MainActivity;
+import com.example.test.MapsActivity;
+import com.example.test.NewsActivity;
 import com.example.test.R;
+import com.example.test.SpotlistActivity;
 import com.example.test.SqliteHelper;
+import com.example.test.bnb;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
@@ -71,7 +80,7 @@ public class Login extends AppCompatActivity {
         guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
+                Intent intent = new Intent(Login.this, NewsActivity.class);
                 startActivity(intent);
             }
         });
@@ -82,6 +91,8 @@ public class Login extends AppCompatActivity {
                 infoPop();
             }
         });
+
+
 
     }
 
@@ -104,12 +115,12 @@ public class Login extends AppCompatActivity {
         builder.show();
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        this.finishAffinity();
-        startActivity(intent);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Intent intent = new Intent(this, NewsActivity.class);
+//        this.finishAffinity();
+//        startActivity(intent);
+//    }
 
 
 

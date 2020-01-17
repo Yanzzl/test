@@ -26,16 +26,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".bnb">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".ActivityOne"></activity>
-        <activity android:name=".ActivityTwo"></activity>
-        <activity android:name=".ActivityThree"></activity>
-        <activity android:name=".ActivityFour"></activity>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -49,28 +41,34 @@
             android:name=".TestingActivity"
             android:label="GeoPoints"
             android:theme="@style/bar"
-            android:parentActivityName=".MainActivity"
             />
         <activity android:name=".ElevatorB2"></activity>
         <activity android:name=".ElevatorB1" />
         <activity android:name=".EditNews" />
         <activity android:name=".NewsPage" />
         <activity android:name=".MakeNews" />
-        <activity android:name=".NewsActivity" />
+        <activity android:name=".NewsActivity">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+
+
         <activity android:name=".ar12_9" />
         <activity android:name=".Web" />
         <activity android:name=".SpotInfo" />
         <activity
             android:name=".Upload"
             android:label="Upload"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".NewsActivity"
             android:theme="@style/bar" />
         <activity android:name=".ElevatorActivity" />
         <activity android:name=".EditStoryActivity" />
         <activity android:name=".SpotlistActivity"
             android:label="GeoPoints"
             android:theme="@style/bar"
-            android:parentActivityName=".MainActivity"
+
             />
         <!-- <activity android:name=".artest" /> -->
         <activity
@@ -78,11 +76,11 @@
             android:parentActivityName=".accounts.Login" />
         <activity
             android:name=".accounts.Login"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".NewsActivity" />
         <activity
             android:name=".accounts.AccountPage"
             android:label="Account"
-            android:parentActivityName=".MainActivity"
+
             android:theme="@style/bar" />
         <activity
             android:name=".accounts.ChangeData"
@@ -105,16 +103,14 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
-            android:parentActivityName=".MainActivity"
+
             android:theme="@style/bar" />
         <activity
             android:name=".game"
             android:label="game"
-            android:parentActivityName=".MainActivity"
+
             android:theme="@style/bar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -127,29 +123,23 @@
         <activity
             android:name=".ar"
             android:label="ar"
-            android:parentActivityName=".MainActivity"
+
             android:theme="@style/bar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+
         </activity>
         <activity
             android:name=".account"
             android:label="account"
-            android:parentActivityName=".MainActivity"
+
             android:theme="@style/bar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+
         </activity>
         <activity
             android:name=".map"
             android:label="map"
-            android:parentActivityName=".MainActivity"
+
             android:theme="@style/bar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+
         </activity>
         <activity android:name=".MainActivity">
 
@@ -162,7 +152,7 @@
             android:value="required" />
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
+            android:value=".NewsActivity" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

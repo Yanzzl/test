@@ -15,7 +15,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.test.accounts.AccountPage;
+import com.example.test.accounts.Login;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -37,7 +40,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private boolean pop;
     SqliteHelper dbHelper;
     HashMap<String, LatLng> markers;
-
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
 
 
 
@@ -57,35 +61,44 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(1);
+        MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.ic_arrow:
-                        Intent intent0 = new Intent(MapsActivity.this, bnb.class);
-                        startActivity(intent0);
-                        break;
-
                     case R.id.ic_news:
-
-                        break;
+                            Intent intent1 = new Intent(MapsActivity.this, NewsActivity.class);
+                        startActivity(intent1);
+//                        break;
 
                     case R.id.ic_list:
-                        Intent intent1 = new Intent(MapsActivity.this, ActivityTwo.class);
-                        startActivity(intent1);
+                        if (dbHelper.isLogin()) {
+                            Intent intent = new Intent(MapsActivity.this, TestingActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(MapsActivity.this, SpotlistActivity.class);
+                            startActivity(intent);
+                        }
                         break;
 
                     case R.id.ic_Map:
-                        Intent intent3 = new Intent(MapsActivity.this, ActivityThree.class);
-                        startActivity(intent3);
+//                        Intent intent3 = new Intent(MapsActivity.this, MapsActivity.class);
+//                        startActivity(intent3);
                         break;
 
                     case R.id.ic_account:
-                        Intent intent4 = new Intent(MapsActivity.this, ActivityFour.class);
-                        startActivity(intent4);
+                        if (dbHelper.isLogin()) {
+                            Intent intent4 = new Intent(MapsActivity.this, AccountPage.class);
+                            startActivity(intent4);
+
+                        } else {
+                            Intent intent4 = new Intent(MapsActivity.this, Login.class);
+                            startActivity(intent4);
+
+                        }
+
                         break;
                 }
 
@@ -220,6 +233,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             LatLng latLng = new LatLng(lat, lng);
             markers.put(title, latLng);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            moveTaskToBack(true);
+//            android.os.Process.killProcess(android.os.Process.myPid());
+//            System.exit(1);
+        } else {
+            Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
+        }
+        mBackPressed = System.currentTimeMillis();
     }
 
     

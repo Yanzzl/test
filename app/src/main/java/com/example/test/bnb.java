@@ -56,9 +56,6 @@ public class bnb extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.ic_arrow:
-
-                        break;
 
                     case R.id.ic_news:
                         Intent intent1 = new Intent(bnb.this, MapsActivity.class);

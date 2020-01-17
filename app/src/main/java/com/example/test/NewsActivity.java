@@ -2,6 +2,7 @@ package com.example.test;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,12 +24,20 @@ public class NewsActivity extends AppCompatActivity {
 
     SqliteHelper dbHelper;
     boolean isAdmin = false;
-
+    private SectionsPageAdapter mSectionsPageAdapter;
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
+    private ViewPager mViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
+
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
         Button add = findViewById(R.id.addNews_news);
         ListView listView = (ListView) findViewById(R.id.list_news);
         dbHelper = new SqliteHelper(this);
@@ -71,9 +80,7 @@ public class NewsActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.ic_arrow:
 
-                        break;
 
                     case R.id.ic_news:
 //                        Intent intent1 = new Intent(NewsActivity.this, MapsActivity.class);
@@ -81,8 +88,13 @@ public class NewsActivity extends AppCompatActivity {
 //                        break;
 
                     case R.id.ic_list:
-                        Intent intent2 = new Intent(NewsActivity.this, SpotlistActivity.class);
-                        startActivity(intent2);
+                        if (dbHelper.isLogin()) {
+                            Intent intent = new Intent(NewsActivity.this, TestingActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(NewsActivity.this, SpotlistActivity.class);
+                            startActivity(intent);
+                        }
                         break;
 
                     case R.id.ic_Map:
@@ -94,11 +106,11 @@ public class NewsActivity extends AppCompatActivity {
                         if (dbHelper.isLogin()) {
                             Intent intent4 = new Intent(NewsActivity.this, AccountPage.class);
                             startActivity(intent4);
-                            startActivity(intent4);
+
                         } else {
                             Intent intent4 = new Intent(NewsActivity.this, Login.class);
                             startActivity(intent4);
-                            startActivity(intent4);
+
                         }
 
                         break;
@@ -117,7 +129,17 @@ public class NewsActivity extends AppCompatActivity {
 //        this.finishAffinity();
 //        startActivity(intent);
 //    }
-    
-    
+
+    @Override
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            moveTaskToBack(true);
+//            android.os.Process.killProcess(android.os.Process.myPid());
+//            System.exit(1);
+        } else {
+            Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
+        }
+        mBackPressed = System.currentTimeMillis();
+    }
 
 }
