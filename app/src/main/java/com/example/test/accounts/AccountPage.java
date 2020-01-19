@@ -59,8 +59,7 @@ public class AccountPage extends AppCompatActivity {
     ImageView picture;
     SqliteHelper dbHelper;
     String currentUser;
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
-    private long mBackPressed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +67,7 @@ public class AccountPage extends AppCompatActivity {
         final Button logout = findViewById(R.id.logout_a);
         final TextView name = findViewById(R.id.name_a);
         final TextView email = findViewById(R.id.email_a);
-        final TextView liked = findViewById(R.id.liked_spots);
+//        final TextView liked = findViewById(R.id.liked_spots);
         picture = findViewById(R.id.profile_picture);
         dbHelper = new SqliteHelper(this);
         currentUser = dbHelper.getCurrent();
@@ -95,13 +94,13 @@ public class AccountPage extends AppCompatActivity {
             }
         });
 
-        liked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AccountPage.this, Liked.class);
-                startActivity(intent);
-            }
-        });
+//        liked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(AccountPage.this, Liked.class);
+//                startActivity(intent);
+//            }
+//        });
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -308,17 +307,7 @@ public class AccountPage extends AppCompatActivity {
 //        this.finishAffinity();
 //        startActivity(intent);
 //    }
-    @Override
-    public void onBackPressed() {
-        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
-            moveTaskToBack(true);
-    //            android.os.Process.killProcess(android.os.Process.myPid());
-    //            System.exit(1);
-        } else {
-            Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
-        }
-        mBackPressed = System.currentTimeMillis();
-    }
+
 
 
 

@@ -23,6 +23,9 @@ public class ElevatorB3 extends AppCompatActivity {
         btnUp = (Button) findViewById(R.id.btnUpF3);
         txtGame = (TextView) findViewById(R.id.txtGame);
 
+        spotTitle = getIntent().getStringExtra("TITLE");
+        isLogin = getIntent().getBooleanExtra("IS_LOGIN", false);
+
         btnUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
