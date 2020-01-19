@@ -46,8 +46,10 @@
 
         <activity android:name=".NewsPage" />
         <activity android:name=".MakeNews" />
-        <activity android:name=".NewsActivity" >
-
+        <activity android:name=".NewsActivity"
+            android:label="News"
+            android:theme="@style/bar"
+            >
         </activity>
         <activity android:name=".ar12_9" />
         <activity android:name=".Web" />
