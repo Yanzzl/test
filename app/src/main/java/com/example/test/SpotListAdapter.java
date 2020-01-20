@@ -25,7 +25,9 @@ public class SpotListAdapter extends BaseAdapter implements ListAdapter {
     private Context context;
 
     SqliteHelper dbHelper;
-    boolean isAdmin = false;
+    boolean isAdmin;
+
+    boolean isFavo;
 
     public static final int FAVORITE_SPOTS = 50;
     public static final int ALL_SPOTS = 150;
@@ -34,11 +36,13 @@ public class SpotListAdapter extends BaseAdapter implements ListAdapter {
         this.context = context;
         dbHelper = new SqliteHelper(context);
         if (code == FAVORITE_SPOTS) {
+            isFavo = true;
             Cursor data = dbHelper.getFavoriteSpots(dbHelper.getCurrent());
             while(data.moveToNext()){
                 this.list.add(data.getString(2));
             }
         } else if (code == ALL_SPOTS) {
+            isFavo = false;
             Cursor data = dbHelper.getGeoPoints();
             while (data.moveToNext()) {
                 this.list.add(data.getString(1));
@@ -79,11 +83,18 @@ public class SpotListAdapter extends BaseAdapter implements ListAdapter {
         //Handle buttons and add onClickListeners
         ImageView edit = view.findViewById(R.id.item_edit_admin);
         ImageView delete = view.findViewById(R.id.item_delete_admin);
+        ImageView remove = view.findViewById(R.id.item_remove_admin);
 
-        if (isAdmin) {
-            edit.setVisibility(View.VISIBLE);
-            delete.setVisibility(View.VISIBLE);
+
+        if (isFavo) {
+            remove.setVisibility(View.VISIBLE);
+        } else {
+            if (isAdmin) {
+                edit.setVisibility(View.VISIBLE);
+                delete.setVisibility(View.VISIBLE);
+            }
         }
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +115,31 @@ public class SpotListAdapter extends BaseAdapter implements ListAdapter {
                         // delete
                         dbHelper.removeGeoPics(list.get(position));
                         dbHelper.removeGeoPoint(list.get(position));
+                        Intent intent = new Intent(context, TestingActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //canceled
+                    }
+                });
+                builder.show();
+            }
+        });
+
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Are you sure to remove this Geo point from favorite list?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // delete
+                        dbHelper.removeFavorite(dbHelper.getCurrent(), list.get(position));
+
                         Intent intent = new Intent(context, TestingActivity.class);
                         context.startActivity(intent);
                     }

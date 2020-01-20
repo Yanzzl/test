@@ -35,7 +35,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public static final String COL1 = "ID";
     public static final String COL2 = "ITEM1";
 
-    public static final String DB_TEST = "DB_TEST43.db";
+    public static final String DB_TEST = "DB_TEST52.db";
     public static final String SPOT = "geopoint";
     public static final String title = "TITLE";
     public static final String description = "DESCRIPTION";
@@ -283,6 +283,10 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Staringmonument met zandsteengroeve in Losser', 52.256800, 7.006776, '" + description8 + "')");
         db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Museum De Trilobiet in Weerselo', 52.336308, 6.879793, '" + description9 + "')");
 
+//        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Test11', 52.263837, 7.005692, '" + description7 + "')");
+//        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Test12', 52.256800, 7.006776, '" + description8 + "')");
+//        db.execSQL("INSERT INTO geopoint (TITLE, LATITUDE, LONGITUDE, DESCRIPTION) VALUES ('Test13', 52.336308, 6.879793, '" + description9 + "')");
+
 //        long result = db.insert(SPOT, null, contentValues);
 //
 //        if (result == -1) {
@@ -334,6 +338,10 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Staringmonument met zandsteengroeve in Losser', '" + pic81.toString() + "')");
 
         db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Museum De Trilobiet in Weerselo', '" + pic91.toString() + "')");
+
+//        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Test11', '" + pic91.toString() + "')");
+//        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Test13', '" + pic91.toString() + "')");
+//        db.execSQL("INSERT INTO picture (TITLE, VALUE) VALUES ('Test12', '" + pic91.toString() + "')");
 
         return true;
     }

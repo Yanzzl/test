@@ -16,7 +16,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.test.MyCustomAdapter;
 import com.example.test.R;
 import com.example.test.SpotListAdapter;
 import com.example.test.SpotlistActivity;

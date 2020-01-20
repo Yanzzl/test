@@ -141,7 +141,7 @@ public class Upload extends AppCompatActivity implements ImageListAdapter.ItemCl
                                 dbHelper.addGeoPicture(title_, pic);
                             }
                             Toast.makeText(getApplicationContext(), "Upload succeeded! ", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Upload.this, SpotlistActivity.class);
+                            Intent intent = new Intent(Upload.this, TestingActivity.class);
                             startActivity(intent);
                         }
                     }
