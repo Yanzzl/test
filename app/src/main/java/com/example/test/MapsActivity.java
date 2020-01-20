@@ -55,6 +55,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -150,21 +151,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         enableMyLocation();
 
-        //set zoom
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            double longitude = location.getLongitude();
-            double latitude = location.getLatitude();
-            LatLng current = new LatLng(latitude, longitude);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 10));
-        } else {
-            LatLng zoom = new LatLng(52.3, 6.8);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zoom, 10));
-        }
+//        //set zoom
+//        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        if (ContextCompat.checkSelfPermission(this,
+//                Manifest.permission.ACCESS_FINE_LOCATION)
+//                == PackageManager.PERMISSION_GRANTED) {
+//            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            double longitude = location.getLongitude();
+//            double latitude = location.getLatitude();
+//            LatLng current = new LatLng(latitude, longitude);
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 10));
+//        } else {
+//            LatLng zoom = new LatLng(52.3, 6.8);
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zoom, 10));
+//        }
 
+        LatLng zoom = new LatLng(52.3, 6.8);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zoom, 10));
 
         if (pop) {
             String title = getIntent().getStringExtra("TITLE");
