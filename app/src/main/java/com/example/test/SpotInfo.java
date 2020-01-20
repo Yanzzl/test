@@ -118,7 +118,7 @@ public class SpotInfo extends AppCompatActivity implements ImageListAdapter.Item
                                 dbHelper.addGeoPicture(title_, pic);
                             }
                             Toast.makeText(getApplicationContext(), "Update succeeded! " + selectedPhoto, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SpotInfo.this, SpotlistActivity.class);
+                            Intent intent = new Intent(SpotInfo.this, TestingActivity.class);
                             startActivity(intent);
                         }
                     }

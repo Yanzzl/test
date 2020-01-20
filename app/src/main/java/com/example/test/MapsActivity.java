@@ -55,7 +55,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -151,7 +150,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         enableMyLocation();
 
-//        //set zoom
+        //set zoom
 //        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 //        if (ContextCompat.checkSelfPermission(this,
 //                Manifest.permission.ACCESS_FINE_LOCATION)
@@ -165,7 +164,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //            LatLng zoom = new LatLng(52.3, 6.8);
 //            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zoom, 10));
 //        }
-
         LatLng zoom = new LatLng(52.3, 6.8);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zoom, 10));
 
